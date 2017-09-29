@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="repeat_type">
+        <item>@string/once</item>
+        <item>@string/every_day</item>
+        <item>@string/every_week</item>
+        <item>@string/every_month</item>
+        <item>@string/every_year</item>
+        <item>@string/every_year_lunar</item>
+        <item>@string/user_define</item>
+    </string-array>
+    <string-array name="remind_type">
+        <item>@string/none</item>
+        <item>@string/on_time</item>
+        <item>@string/five_minutes_before</item>
+        <item>@string/ten_minutes_before</item>
+        <item>@string/fifteen_minutes_before</item>
+        <item>@string/thirty_minutes_before</item>
+        <item>@string/one_hours_before</item>
+        <item>@string/two_hours_before</item>
+        <item>@string/twenty_four_hours_before</item>
+        <item>@string/two_day_before</item>
+        <item>@string/one_week_before</item>
+    </string-array>
+</resources>

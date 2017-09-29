@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Backup</string>
+    <string name="action_settings">设置</string>
+    <string name="title">标题</string>
+    <string name="location">地点</string>
+    <string name="start">开始</string>
+    <string name="end">结束</string>
+    <string name="repeat">重复</string>
+    <string name="remind">提醒</string>
+    <string name="description">说明</string>
+    <string name="add">新加</string>
+    <string name="all">所有</string>
+    <string name="title_alert">tips</string>
+    <string name="once">一次性活动</string>
+    <string name="every_day">每天</string>
+    <string name="every_week">每周</string>
+    <string name="every_month">每月</string>
+    <string name="every_year">每年</string>
+    <string name="every_year_lunar">农历每年</string>
+    <string name="user_define">自定义</string>
+    <string name="none">无</string>
+    <string name="on_time">准时</string>
+    <string name="five_minutes_before">5分钟前</string>
+    <string name="ten_minutes_before">10分钟前</string>
+    <string name="fifteen_minutes_before">15分钟前</string>
+    <string name="thirty_minutes_before">30分钟前</string>
+    <string name="one_hours_before">1小时前</string>
+    <string name="two_hours_before">2小时前</string>
+    <string name="twenty_four_hours_before">24小时前</string>
+    <string name="two_day_before">2天前</string>
+    <string name="one_week_before">1周前</string>
+    <string name="title_activity_activity_examine">查看活动</string>
+    <string name="about">关于</string>
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- camera surfaceview -->
+    <color name="laser_">#FFCC0000</color>
+    <color name="exclusion_">#92000000</color>
+    <color name="possible_result_points_">#C0FFBD21</color>
+    <color name="transparent_black_">#2F2D34</color>
+    <color name="exact_red_">#E2614C</color>
+
+    <!-- 主界面 -->
+
+    <color name="label_bg_light_blue">#ff71a3d7</color>
+    <color name="edit_hint_textcolor">#ff646464</color>
+    <color name="edit_bg_color">#ffa4c4e5</color>
+    <color name="white_bg">#ffffffff</color>
+    <color name="grey_bg">#ffdddddd</color>
+    <color name="button_bg_normal">#ffffffff</color>
+    <color name="button_bg_pressed">#ffbbbbbb</color>
+    <color name="button_bg_blue_normal">#ff71a3d7</color>
+    <color name="button_bg_blue_pressed">#ff71a3d7</color>
+
+    <!-- ui title -->
+    <color name="ui_titlebar_bg">#ff2ed3ef</color>
+    <color name="ui_titlebar_right_btn_bg">#ffb0ecf4</color>
+    <color name="ui_titlebar_right_btn_bg_pressed">#ffbbbbbb</color>
+    <color name="ui_text_red">#fff94242</color>
+
+    <!-- MySpinner -->
+    <color name="black">#FF000000</color>
+    <color name="spinner_list_background">#EFEFEF</color>
+    <color name="spinner_list_select">#7BCBEE</color>
+    <color name="spinner_list_divider">#D8D8D8</color>
+
+    <!-- 主界面 -->
+    <color name="main_tab_bg">#ff7f7f81</color>
+    <color name="fragment_business_sales_bg">#ff3f7075</color>
+    <color name="fragment_business_purchase_bg">#ff7ba716</color>
+    <color name="fragment_business_money_bg">#ffad6a01</color>
+    <color name="fragment_business_ticket_bg">#ffae5da0</color>
+    <color name="fragment_business_statistics_bg">#fffb4592</color>
+
+    <!-- 0119主界面配色 -->
+    <color name="ui_blue">#FF3A8DEF</color>
+    <color name="ui_dark_blue">#FF0000FF</color>
+    <color name="ui_light_blue">#FF87C7D9</color>
+    <color name="ui_black">#FF000000</color>
+    <color name="ui_white">#FFFFFFFF</color>
+    <color name="ui_semiwhite">#7FFFFFFF</color>
+    <color name="ui_red">#FFEB4646</color>
+    <color name="ui_deep_gray">#FFA7A7A7</color>
+    <color name="ui_deep_green">#FF108D6C</color>
+    <color name="ui_orange">#FFF2A036</color>
+    <color name="titlebar_bg">@color/ui_blue</color>
+    <color name="btn_bg_normal">@color/ui_blue</color>
+    <color name="btn_add_sub_bg_normal">@color/ui_orange</color>
+    <color name="font_default">#FF8B8B8B</color>
+    <color name="ui_light_gray">#FFF2F2F2</color>
+    <color name="ui_green">#FF16BB8E</color>
+
+    <!-- 字体配色 -->
+    <color name="font_light">#FF999999</color>
+    <color name="font_medium">#FF666666</color>
+    <color name="font_black">#FF333333</color>
+    <color name="font_lightdark">#FF555555</color>
+    <color name="font_hint">#FFBBBBBB</color>
+
+    <!-- 状态颜色 -->
+    <color name="status_orange">#FFE46C0A</color>
+    <color name="status_dark_blue">#FF0070C0</color>
+    <color name="status_red">#FFFF0000</color>
+    <color name="status_lake_blue">#FF31859C</color>
+    <color name="status_green">#FF00B050</color>
+    <color name="status_brown">#FF953735</color>
+    <color name="status_purple">#FF7030A0</color>
+    <color name="status_dark_green">#FF007A37</color>
+    <color name="status_light_brown">#FFB33C17</color>
+    <color name="ui_grass_green">#FF89AC1D</color>
+    <color name="ui_main_bg_gray">#FFF0F0F0</color>
+    <color name="ui_selector_gray">#FFD8D8D8</color>
+    <color name="ui_semitransparent_black">#88000000</color>
+
+    <!-- 上传图片添加的颜色 -->
+    <color name="none_color">#00000000</color>
+    <color name="plugin_camera_black">#000000</color>
+    <color name="albumback">#E1E0DE</color>
+    <color name="style_red">#ff4c41</color>
+    <color name="style_divider_color">#C9C7CD</color>
+
+</resources>
