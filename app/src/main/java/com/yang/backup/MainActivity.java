@@ -65,18 +65,22 @@ public class MainActivity extends Activity {
         title = (TextView) findViewById(R.id.titlebar_main_date);
         title.setText(m_CalHelp.CalendarToString(
                 Calendar.getInstance(), m_CalHelp.DATE_FORMAT_DISPLAY).substring(0, 8));
-
-        record = new ArrayList<>();
         expandablelistview = (ExpandableListView) findViewById(R.id.expandablelistview_main_record);
-        expandablelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                LogUtils.v(TAG, "position = " + position);
+        expandablelistview.setGroupIndicator(null);
+
+        expandablelistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            public boolean onChildClick(ExpandableListView parent, View v,
+            int groupPosition, int childPosition, long id) {
+                LogUtils.v(TAG, "position = " + childPosition);
+                int iId = record.get(groupPosition).get(childPosition).id;
                 Intent intent = new Intent();
+                intent.putExtra("id", iId);
                 intent.setClass(getApplicationContext(), ActivityExamine.class);
                 startActivity(intent);
+                return true;
             }
         });
+        record = new ArrayList<>();
     }
 
     @Override
@@ -124,7 +128,6 @@ public class MainActivity extends Activity {
         for (int i = 0; i < groupCount; i++) {
             expandablelistview.expandGroup(i);
         }
-        expandablelistview.setGroupIndicator(null);
         createFloatView();
         super.onResume();
     }
@@ -215,7 +218,6 @@ public class MainActivity extends Activity {
                     case UPDATE_LIST:
                         adapter.notifyDataSetChanged();
                         sendEmptyMessageDelayed(UPDATE_LIST, 60000);
-                        LogUtils.v(TAG, "UPDATE_LIST");
                         break;
 
                 }
@@ -309,12 +311,7 @@ public class MainActivity extends Activity {
             String e = record.get(groupPosition).get(childPosition).end_time;
             TextView end = (TextView) convertView.findViewById(
                     R.id.textview_item_main_child_end_time);
-            end.setText(e.substring(e.length() - 5, e.length()));
-
-            ProgressBar progress = (ProgressBar) convertView.findViewById(
-                    R.id.progressbar_item_main_child_date);
-            LogUtils.d(TAG, "" + getProgress(s, e));
-            progress.setProgress(getProgress(s, e));
+            end.setText(getDuration(e));
             return convertView;
         }
 
@@ -324,18 +321,24 @@ public class MainActivity extends Activity {
             return true;
         }
 
-        int getProgress(String start, String end) {
-            Calendar C_start, C_end, C_now;
-            C_start = m_CalHelp.StringToCalendar(start, m_CalHelp.DATE_FORMAT_SQL);
+        String getDuration(String end) {
+            Calendar C_end, C_now;
+            int iDuration;
             C_end = m_CalHelp.StringToCalendar(end, m_CalHelp.DATE_FORMAT_SQL);
             C_now = Calendar.getInstance();
-            if (C_now.before(C_start)) {
-                return 0;
+            iDuration = (int) (m_CalHelp.getDiff(C_end, C_now))/60000;
+            if(iDuration/(24*60) != 0){
+                return iDuration/(24*60) + getResources().getString(R.string.day)
+                        + getResources().getString(R.string.end);
             }
-            if (C_now.after(C_end)) {
-                return 100;
+            if(iDuration/60 != 0){
+                return iDuration/60 + getResources().getString(R.string.hour)
+                        + getResources().getString(R.string.end);
+            }else{
+                return iDuration%60 + getResources().getString(R.string.minute)
+                        + getResources().getString(R.string.end);
             }
-            return (int) (m_CalHelp.getDiff(C_now, C_start) * 100 / m_CalHelp.getDiff(C_end, C_start));
+
         }
     }
 }

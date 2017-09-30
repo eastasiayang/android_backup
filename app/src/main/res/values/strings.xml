@@ -31,4 +31,7 @@
     <string name="one_week_before">1周前</string>
     <string name="title_activity_activity_examine">查看活动</string>
     <string name="about">关于</string>
+    <string name="day">天</string>
+    <string name="hour">小时</string>
+    <string name="minute">分钟</string>
 </resources>
