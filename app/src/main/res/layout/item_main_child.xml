@@ -2,48 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/textview_item_main_child_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:layout_marginStart="10dp"
         android:layout_weight="1"
-        android:layout_gravity="center_vertical"
         android:singleLine="true"
         android:text=""
         android:textColor="#F000"
         android:textSize="20sp" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textview_item_main_child_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="#F000"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/textview_item_main_child_start_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text=""
-            android:textColor="#F000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textview_item_main_child_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text=""
-            android:textColor="#F000"
-            android:textSize="14sp" />
-    </LinearLayout>
 
 </LinearLayout>

@@ -268,6 +268,16 @@ public class LunarCalendar {
         }
     }
 
+    public Calendar GetNextLunarYear(Calendar cal){
+        Calendar result = (Calendar)cal.clone();
+        int[] lunar_date = solarToLunar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1,
+                cal.get(Calendar.DAY_OF_MONTH));
+        lunar_date[0]++;
+        int[] date = lunarToSolar(lunar_date[0], lunar_date[1], lunar_date[2], false);
+        result.set(date[0], date[1]-1, date[2]);
+        return result;
+    }
+
     /**
      * 传回农历year年month月的总天数
      *

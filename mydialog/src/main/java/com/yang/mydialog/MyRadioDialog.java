@@ -3,25 +3,20 @@ package com.yang.mydialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.yang.basic.LogUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,12 +67,12 @@ public class MyRadioDialog {
             slist.add(map);
         }
         SimpleAdapter simple = new SimpleAdapter(context, slist,
-                R.layout.dialog_item_radio, new String[]{"text", "radio"}, new int[]{
+                R.layout.item_radio, new String[]{"text", "radio"}, new int[]{
                 R.id.textView, R.id.radioButton}) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 if (convertView == null)
-                    convertView = View.inflate(context, R.layout.dialog_item_radio, null);
+                    convertView = View.inflate(context, R.layout.item_radio, null);
                 RadioButton radio = (RadioButton) convertView.findViewById(R.id.radioButton);
                 radio.setClickable(false);
                 return super.getView(position, convertView, parent);
@@ -102,7 +97,7 @@ public class MyRadioDialog {
             myDialog = new Dialog(context, R.style.MyDialog);
             myDialog.setCancelable(false);
             myDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            myDialog.setContentView(R.layout.dialog_basic_data_single);
+            myDialog.setContentView(R.layout.dialog_radio);
             Window window = myDialog.getWindow();
             WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             DisplayMetrics dm = new DisplayMetrics();

@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ActivityFuture">
+    android:orientation="vertical"
+    tools:context="com.yang.backup.ActivityFuture">
 
-    <ListView
-        android:id="@+id/listview_all_record"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:drawSelectorOnTop="false" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="50dp">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageview_future_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_back"
+            />
+        <TextView
+            android:id="@+id/textview_future_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/future"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/expandablelistview_future_record"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="#00000000"
+        android:drawSelectorOnTop="false"
+        android:listSelector="#00000000" />
+
+</LinearLayout>

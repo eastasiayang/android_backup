@@ -5,11 +5,17 @@
     <string name="location">地点</string>
     <string name="start">开始</string>
     <string name="end">结束</string>
+    <string name="ended">已结束</string>
+    <string name="will_start">后开始</string>
     <string name="repeat">重复</string>
     <string name="remind">提醒</string>
     <string name="description">说明</string>
     <string name="add">新加</string>
+    <string name="delete">删除</string>
+    <string name="modify">修改</string>
     <string name="all">所有</string>
+    <string name="past">过去</string>
+    <string name="future">未来</string>
     <string name="title_alert">tips</string>
     <string name="once">一次性活动</string>
     <string name="every_day">每天</string>
@@ -29,9 +35,12 @@
     <string name="twenty_four_hours_before">24小时前</string>
     <string name="two_day_before">2天前</string>
     <string name="one_week_before">1周前</string>
-    <string name="title_activity_activity_examine">查看活动</string>
+    <string name="examine">查看活动</string>
     <string name="about">关于</string>
     <string name="day">天</string>
     <string name="hour">小时</string>
     <string name="minute">分钟</string>
+    <string name="are_you_sure_delete">是否删除此活动？</string>
+    <string name="are_you_sure_finish">是否结束此活动？</string>
+    <string name="finish">完成</string>
 </resources>

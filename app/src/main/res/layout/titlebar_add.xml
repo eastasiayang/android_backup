@@ -13,6 +13,7 @@
         android:src="@drawable/ic_cancel"
         />
     <TextView
+        android:id="@+id/title_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add"

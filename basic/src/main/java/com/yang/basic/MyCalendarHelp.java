@@ -52,7 +52,11 @@ public class MyCalendarHelp {
     public long getDiff(Calendar date1, Calendar date2) {
         long time1 = date1.getTimeInMillis();
         long time2 = date2.getTimeInMillis();
-        return (time1 - time2);
+        if(time1 > time2){
+            return time1-time2;
+        }else{
+            return time2-time1;
+        }
     }
 
     public int getWeekDay(String str) {

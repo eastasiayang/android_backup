@@ -18,20 +18,21 @@
             android:theme="@style/AppTheme.MyStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".ActivityAdd"
+            android:name=".ActivityAddOrModify"
             android:theme="@style/AppTheme.MyStyle" />
+        <activity android:name=".ActivityFuture" />
+        <activity android:name=".ActivityExamine" />
+        <activity android:name=".ActivityFinish" />
 
-        <activity android:name=".ActivityAll" />
 
-        <activity
-            android:name=".ActivityExamine"
-            android:theme="@style/AppTheme.MyStyle" />
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

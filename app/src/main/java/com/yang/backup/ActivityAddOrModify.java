@@ -20,7 +20,7 @@ import java.util.Calendar;
 
 public class ActivityAddOrModify extends Activity implements View.OnClickListener {
 
-    private static final String TAG = "ActivityAdd";
+    private static final String TAG = "ActivityAddOrModify";
 
     private ImageView OK;
     private TextView title_name;
@@ -48,7 +48,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_add_modify);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar_add);
 
         id = getIntent().getIntExtra("id", -1);
@@ -167,6 +167,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
                 values.put(DataBaseManager.RecordsTable.REPEAT, sRepeat);
                 values.put(DataBaseManager.RecordsTable.REMIND, sRemind);
                 values.put(DataBaseManager.RecordsTable.DESCRIPTION, sDescription);
+                values.put(DataBaseManager.RecordsTable.FINISH, false);
                 if(id == -1){
                     DataBaseManager.getInstance(this).insertRecord(values);
                 }else{

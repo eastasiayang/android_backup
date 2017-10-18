@@ -29,7 +29,8 @@ public class DataBaseManager {
     protected static final String DATABASE_NAME = "backup.db";
     String Record_table = "records";
     String createTable[] = {"create Table records(_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "title TEXT, local TEXT, start_time datetime, end_time datetime, repeat int, "
+            + "title TEXT, local TEXT, start_time datetime, end_time datetime, finish boolean,"
+            + "finish_time datetime, repeat TEXT,"
             + "remind datetime, description TEXT);"};
 
     public DataBaseManager(Context context) {
@@ -53,6 +54,35 @@ public class DataBaseManager {
         iCount = cursor.getCount();
         cursor.close();
         return iCount;
+    }
+
+    public RecordsTable getRecordByID(int iID){
+        RecordsTable table = new RecordsTable();
+        Cursor cursor = mDatabase.rawQuery("select * from " + Record_table +
+                " where " + RecordsTable.ID + " = " + iID, null);
+        LogUtils.d(TAG, "select * from " + Record_table +
+                " where " + RecordsTable.ID + " = " + iID );
+        if(cursor.getCount() != 1){
+            cursor.close();
+            return null;
+        }
+        cursor.moveToFirst();
+        table.id = cursor.getInt(0);
+        table.title = cursor.getString(1);
+        table.local = cursor.getString(2);
+        table.start_time = cursor.getString(3);
+        table.end_time = cursor.getString(4);
+        if(cursor.getInt(5) == 1){
+            table.finish = true;
+        }else{
+            table.finish = false;
+        }
+        table.finish_time = cursor.getString(6);
+        table.repeat = cursor.getString(7);
+        table.remind = cursor.getString(8);
+        table.description = cursor.getString(9);
+        cursor.close();
+        return table;
     }
 
     private String getJSONObject(Cursor cursor){
@@ -91,10 +121,9 @@ public class DataBaseManager {
         return out.toString();
     }
 
-    public String getEndedRecordList(Calendar cal){
+    public String getFinishedRecordList(){
         Cursor cursor = mDatabase.rawQuery("select * from " + Record_table +
-                " where " + RecordsTable.END_TIME +
-                "<'" + m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL) + "'"+
+                " where " + RecordsTable.FINISH + " = 1" +
                 " ORDER BY " + RecordsTable.END_TIME + " desc", null);
         return getJSONObject(cursor);
     }
@@ -103,9 +132,8 @@ public class DataBaseManager {
         Cursor cursor = mDatabase.rawQuery("select * from " + Record_table +
                 " where " + RecordsTable.START_TIME +
                 "<='" + m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL) + "'"+
-                " and " + RecordsTable.END_TIME +
-                ">='" + m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL) + "'"+
-                " ORDER BY " + RecordsTable.START_TIME + " desc", null);
+                " and " + RecordsTable.FINISH + "= 0" +
+                " ORDER BY " + RecordsTable.START_TIME, null);
         return getJSONObject(cursor);
     }
 
@@ -113,7 +141,8 @@ public class DataBaseManager {
         Cursor cursor = mDatabase.rawQuery("select * from " + Record_table +
                 " where " + RecordsTable.START_TIME +
                 ">'" + m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL) + "'"+
-                " ORDER BY " + RecordsTable.START_TIME + " desc", null);
+                " and " + RecordsTable.FINISH + "= 0" +
+                " ORDER BY " + RecordsTable.START_TIME, null);
         return getJSONObject(cursor);
     }
 
@@ -123,12 +152,60 @@ public class DataBaseManager {
         return true;
     }
 
-    static public class RecordsTable {
+    public boolean insertRecord(RecordsTable table){
+        ContentValues values = new ContentValues();
+
+        values.put(RecordsTable.TITLE, table.title);
+        values.put(RecordsTable.LOCAL, table.local);
+        values.put(RecordsTable.START_TIME, table.start_time);
+        values.put(RecordsTable.END_TIME, table.end_time);
+        values.put(RecordsTable.FINISH, table.finish);
+        values.put(RecordsTable.FINISH_TIME, table.finish_time);
+        values.put(RecordsTable.REPEAT, table.repeat);
+        values.put(RecordsTable.REMIND, table.remind);
+        values.put(RecordsTable.DESCRIPTION, table.description);
+        mDatabase.insertWithOnConflict(Record_table, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        return true;
+    }
+
+    public boolean updateRecord(ContentValues values){
+        mDatabase.update(Record_table, values, "_ID=?",
+                new String[]{values.getAsString(RecordsTable.ID)});
+        return true;
+    }
+
+    public boolean updateRecord(RecordsTable table){
+        ContentValues values = new ContentValues();
+
+        values.put(RecordsTable.TITLE, table.title);
+        values.put(RecordsTable.LOCAL, table.local);
+        values.put(RecordsTable.START_TIME, table.start_time);
+        values.put(RecordsTable.END_TIME, table.end_time);
+        values.put(RecordsTable.FINISH, table.finish);
+        values.put(RecordsTable.FINISH_TIME, table.finish_time);
+        values.put(RecordsTable.REPEAT, table.repeat);
+        values.put(RecordsTable.REMIND, table.remind);
+        values.put(RecordsTable.DESCRIPTION, table.description);
+
+        mDatabase.update(Record_table, values, "_ID=?",
+                new String[]{Integer.toString(table.id)});
+        return true;
+    }
+
+    public boolean DeleteRecordbyID(int iID){
+        mDatabase.delete(Record_table, "_ID=?",
+                new String[]{Integer.toString(iID)});
+        return true;
+    }
+
+    static public class RecordsTable implements Cloneable{
         public static final String ID = "_id";
         public static final String TITLE = "title";
         public static final String LOCAL = "local";
         public static final String START_TIME = "start_time";
         public static final String END_TIME = "end_time";
+        public static final String FINISH = "finish";
+        public static final String FINISH_TIME = "finish_time";
         public static final String REPEAT = "repeat";
         public static final String REMIND = "remind";
         public static final String DESCRIPTION = "description";
@@ -138,6 +215,8 @@ public class DataBaseManager {
         String local;
         String start_time;
         String end_time;
+        boolean finish;
+        String finish_time;
         String repeat;
         String remind;
         String description;
@@ -152,12 +231,25 @@ public class DataBaseManager {
                 local = obj.optString(LOCAL);
                 start_time = obj.optString(START_TIME);
                 end_time = obj.optString(END_TIME);
+                finish = obj.optBoolean(FINISH);
+                finish_time = obj.optString(FINISH_TIME);
                 repeat = obj.optString(REPEAT);
                 remind = obj.optString(REMIND);
                 description = obj.optString(DESCRIPTION);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        public Object clone() {
+            RecordsTable table = null;
+            try{
+                table = (RecordsTable)super.clone();
+            }catch(CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            return table;
         }
     }
 }

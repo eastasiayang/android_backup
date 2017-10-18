@@ -33,7 +33,7 @@ public class ActivityFinish extends Activity {
     ImageView back;
     ExpandableListView expandablelistview;
     private MyCalendarHelp m_CalHelp;
-    MyAdapter adapter;
+    MyExpandableListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class ActivityFinish extends Activity {
                 int iId = record.get(groupPosition).get(childPosition).id;
                 Intent intent = new Intent();
                 intent.putExtra("id", iId);
-                intent.setClass(getApplicationContext(), ActivityAddOrModify.class);
+                intent.setClass(getApplicationContext(), ActivityExamine.class);
                 startActivity(intent);
                 return true;
             }
@@ -72,7 +72,7 @@ public class ActivityFinish extends Activity {
         LogUtils.v(TAG, "onResume");
         record.clear();
         String result;
-        result = DataBaseManager.getInstance(this).getPastedRecordList(Calendar.getInstance());
+        result = DataBaseManager.getInstance(this).getFinishedRecordList();
         try {
             JSONObject obj = new JSONObject(result);
             if (obj.has("data")) {
@@ -106,122 +106,12 @@ public class ActivityFinish extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        adapter = new MyAdapter(this);
+        adapter = new MyExpandableListAdapter(this, mGroupStrings, record);
         expandablelistview.setAdapter(adapter);
         int groupCount = expandablelistview.getCount();
         for (int i = 0; i < groupCount; i++) {
             expandablelistview.expandGroup(i);
         }
         super.onResume();
-    }
-
-
-
-    public class MyAdapter extends BaseExpandableListAdapter {
-
-        private Context mContext;
-
-        public MyAdapter(Context c) {
-            mContext = c;
-        }
-
-        @Override
-        public int getGroupCount() {
-            int i;
-            for (i = 0; i < mGroupStrings.length; i++) {
-                if (mGroupStrings[i] == null) {
-                    break;
-                }
-            }
-            return i;
-        }
-
-        @Override
-        public Object getGroup(int groupPosition) {
-            return null;
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return groupPosition;
-        }
-
-        @Override
-        public int getChildrenCount(int groupPosition) {
-            return record.get(groupPosition).size();
-        }
-
-        @Override
-        public Object getChild(int groupPosition, int childPosition) {
-            return null;
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }
-
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
-            if (convertView == null)
-                convertView = View.inflate(getApplicationContext(), R.layout.item_main_group, null);
-            TextView title = (TextView) convertView.findViewById(R.id.textview_item_main_group_title);
-            String s = mGroupStrings[groupPosition];
-            Calendar cal = m_CalHelp.StringToCalendar(s, m_CalHelp.DATE_FORMAT_SQL);
-            String e = m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY);
-
-            title.setText(e.substring(0, 11) + m_CalHelp.getWeekString(cal) + " "
-                    + getResources().getString(R.string.lunar) + " "
-                    + new LunarCalendar().GetLunar(cal));
-            return convertView;
-        }
-
-        @Override
-        public View getChildView(int groupPosition, int childPosition,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
-            if (convertView == null)
-                convertView = View.inflate(getApplicationContext(), R.layout.item_main_child, null);
-            TextView title = (TextView) convertView.findViewById(
-                    R.id.textview_item_main_child_title);
-            TextView end = (TextView) convertView.findViewById(
-                    R.id.textview_item_main_child_time);
-
-            title.setText(record.get(groupPosition).get(childPosition).title);
-
-            String e = record.get(groupPosition).get(childPosition).end_time;
-            String temp = getResources().getString(R.string.ended) + getDuration(e);
-            end.setText(temp);
-            return convertView;
-        }
-
-        @Override
-        public boolean isChildSelectable(int groupPosition,
-                                         int childPosition) {
-            return true;
-        }
-
-        String getDuration(String end) {
-            Calendar C_end, C_now;
-            long lDuration;
-            C_end = m_CalHelp.StringToCalendar(end, m_CalHelp.DATE_FORMAT_SQL);
-            C_now = Calendar.getInstance();
-            lDuration = (m_CalHelp.getDiff(C_end, C_now))/60000;
-            LogUtils.d(TAG, "lDuration = " + lDuration);
-            if(lDuration/(24*60) != 0){
-                return lDuration/(24*60) + getResources().getString(R.string.day);
-            }
-            if(lDuration/60 != 0){
-                return lDuration/60 + getResources().getString(R.string.hour);
-            }else{
-                return lDuration%60 + getResources().getString(R.string.minute);
-            }
-        }
     }
 }

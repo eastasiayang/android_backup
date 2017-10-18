@@ -60,7 +60,7 @@ public class MyDateTimeDialog {
             datePickerDialog = new Dialog(context, R.style.MyDialog);
             datePickerDialog.setCancelable(false);
             datePickerDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            datePickerDialog.setContentView(R.layout.dialog_basic_data_data_time);
+            datePickerDialog.setContentView(R.layout.dialog_date_time);
             Window window = datePickerDialog.getWindow();
             WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             DisplayMetrics dm = new DisplayMetrics();
@@ -157,7 +157,7 @@ public class MyDateTimeDialog {
         int iMonth = cal.get(Calendar.MONTH) + 1;
         String sTitle = cal.get(Calendar.YEAR) + context.getString(R.string.year) +
                 iMonth + context.getString(R.string.month) +
-                cal.get(Calendar.DAY_OF_MONTH) + context.getString(R.string.day) +
+                cal.get(Calendar.DAY_OF_MONTH) + context.getString(R.string.days) +
                 m_CalHelp.getWeekString(cal);
         title.setText(sTitle);
     }
@@ -177,7 +177,7 @@ public class MyDateTimeDialog {
                 sTemp = new LunarCalendar().GetLunar(cal) + " " + m_CalHelp.getWeekString(cal);
             } else {
                 sTemp = iMonth + context.getString(R.string.month) +
-                        cal.get(Calendar.DAY_OF_MONTH) + context.getString(R.string.day) +
+                        cal.get(Calendar.DAY_OF_MONTH) + context.getString(R.string.days) +
                         m_CalHelp.getWeekString(cal);
             }
             if (cal.before(selectedCalender)) {
