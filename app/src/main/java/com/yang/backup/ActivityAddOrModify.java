@@ -22,23 +22,22 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
 
     private static final String TAG = "ActivityAddOrModify";
 
-    private ImageView OK;
-    private TextView title_name;
-    private ImageView cancel;
+    EditText title;
+    EditText location;
+    EditText description;
 
-    private EditText title;
-    private EditText location;
-    private EditText description;
+    TextView text_start;
+    TextView text_end;
+    TextView text_repeat;
+    TextView text_remind;
 
-    private LinearLayout start;
-    private LinearLayout end;
-    private LinearLayout repeat;
-    private LinearLayout remind;
-
-    private TextView text_start;
-    private TextView text_end;
-    private TextView text_repeat;
-    private TextView text_remind;
+    ImageView OK;
+    TextView title_name;
+    ImageView cancel;
+    LinearLayout start;
+    LinearLayout end;
+    LinearLayout repeat;
+    LinearLayout remind;
 
     public MyCalendarHelp m_CalHelp;
 

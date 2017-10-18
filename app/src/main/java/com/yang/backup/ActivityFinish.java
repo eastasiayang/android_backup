@@ -1,18 +1,13 @@
 package com.yang.backup;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.yang.basic.LogUtils;
-import com.yang.basic.LunarCalendar;
 import com.yang.basic.MyCalendarHelp;
 
 import org.json.JSONArray;
@@ -20,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class ActivityFinish extends Activity {
@@ -38,19 +32,19 @@ public class ActivityFinish extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_past);
+        setContentView(R.layout.activity_finish);
 
         m_CalHelp = new MyCalendarHelp(this);
         record = new ArrayList<>();
 
-        back = (ImageView) findViewById(R.id.imageview_past_back);
+        back = (ImageView) findViewById(R.id.ImageView_finish_back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
         });
 
-        expandablelistview = (ExpandableListView) findViewById(R.id.expandablelistview_past_record);
+        expandablelistview = (ExpandableListView) findViewById(R.id.ExpandableListView_finish_record);
         expandablelistview.setGroupIndicator(null);
 
         expandablelistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {

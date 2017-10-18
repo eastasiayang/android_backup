@@ -32,6 +32,11 @@
             />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/ui_deep_gray" />
+
     <ExpandableListView
         android:id="@+id/expandablelistview_future_record"
         android:layout_width="match_parent"

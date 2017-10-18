@@ -17,7 +17,16 @@ import java.util.Calendar;
 public class ActivityExamine extends Activity {
 
     private static final String TAG = "ActivityExamine";
-    TextView title_name;
+
+    TextView title;
+    TextView location;
+    TextView date;
+    TextView repeat;
+    TextView remind;
+    TextView description;
+
+    LinearLayout LinearLayout_location, LinearLayout_remind, LinearLayout_description;
+
     private int id;
     LinearLayout lLayout_end, lLayout_delete, lLayout_modify;
     MyAlertDialog m_Alert_Dialog;
@@ -32,13 +41,56 @@ public class ActivityExamine extends Activity {
         m_CalHelp = new MyCalendarHelp(this);
 
         id = getIntent().getIntExtra("id", -1);
+        table = DataBaseManager.getInstance(this).getRecordByID(id);
         LogUtils.v(TAG, "id = " + id);
 
-        title_name = (TextView) findViewById(R.id.textview_examine_title);
-        table = DataBaseManager.getInstance(this).getRecordByID(id);
-        title_name.setText(table.title);
+        title = (TextView) findViewById(R.id.TextView_examine_title);
+        if(table.title.equals("")){
+            title.setText(getResources().getString(R.string.no_title));
+        }else{
+            title.setText(table.title);
+        }
 
-        lLayout_end = (LinearLayout) findViewById(R.id.linearlayout_examine_end);
+        location = (TextView) findViewById(R.id.TextView_examine_location);
+        LinearLayout_location = (LinearLayout) findViewById(R.id.LinearLayout_examine_location);
+        if(table.local.equals("")){
+            LinearLayout_location.setVisibility(View.GONE);
+        }else{
+            location.setText(table.local);
+        }
+
+        date = (TextView) findViewById(R.id.TextView_examine_date);
+        String temp = m_CalHelp.CalendarToString(
+                m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL),
+                m_CalHelp.DATE_FORMAT_DISPLAY) + " - "
+                + m_CalHelp.CalendarToString(
+                m_CalHelp.StringToCalendar(table.end_time, m_CalHelp.DATE_FORMAT_SQL),
+                m_CalHelp.DATE_FORMAT_DISPLAY);
+        date.setText(temp);
+
+
+
+        repeat = (TextView) findViewById(R.id.TextView_examine_repeat);
+        repeat.setText(table.repeat);
+
+        remind = (TextView) findViewById(R.id.TextView_examine_remind);
+        LinearLayout_remind = (LinearLayout) findViewById(R.id.LinearLayout_examine_remind);
+        if(table.remind.equals(getResources().getString(R.string.none))){
+            LinearLayout_remind.setVisibility(View.GONE);
+        }else{
+            remind.setText(table.remind);
+        }
+
+        description = (TextView) findViewById(R.id.TextView_examine_description);
+        LinearLayout_description = (LinearLayout) findViewById(R.id.LinearLayout_examine_description);
+        if(table.description.equals("")){
+            LinearLayout_description.setVisibility(View.GONE);
+        }else{
+            description.setText(table.description);
+        }
+
+
+        lLayout_end = (LinearLayout) findViewById(R.id.LinearLayout_examine_end);
         lLayout_end.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 m_Alert_Dialog = new MyAlertDialog(ActivityExamine.this,
@@ -56,7 +108,7 @@ public class ActivityExamine extends Activity {
                 m_Alert_Dialog.show();
             }
         });
-        lLayout_delete = (LinearLayout) findViewById(R.id.linearlayout_examine_delete);
+        lLayout_delete = (LinearLayout) findViewById(R.id.LinearLayout_examine_delete);
         lLayout_delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 m_Alert_Dialog = new MyAlertDialog(ActivityExamine.this,
@@ -73,7 +125,7 @@ public class ActivityExamine extends Activity {
                 m_Alert_Dialog.show();
             }
         });
-        lLayout_modify = (LinearLayout) findViewById(R.id.linearlayout_examine_modify);
+        lLayout_modify = (LinearLayout) findViewById(R.id.LinearLayout_examine_modify);
         lLayout_modify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -127,7 +179,7 @@ public class ActivityExamine extends Activity {
             new_table.end_time = m_CalHelp.CalendarToString(end, m_CalHelp.DATE_FORMAT_SQL);
             DataBaseManager.getInstance(ActivityExamine.this).insertRecord(new_table);
         } else if (table.repeat.equals(getResources().getString(R.string.user_define))) {
-
+            //wait
         }
     }
 }

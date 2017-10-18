@@ -13,17 +13,16 @@
         android:layout_height="50dp">
 
         <ImageView
-            android:id="@+id/imageview_past_back"
+            android:id="@+id/ImageView_finish_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:src="@drawable/ic_back"
             />
         <TextView
-            android:id="@+id/textview_past_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/past"
+            android:text="@string/finish"
             android:textColor="@color/black"
             android:layout_marginStart="20dp"
             android:textSize="20sp"
@@ -32,8 +31,13 @@
             />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/ui_deep_gray" />
+
     <ExpandableListView
-        android:id="@+id/expandablelistview_past_record"
+        android:id="@+id/ExpandableListView_finish_record"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

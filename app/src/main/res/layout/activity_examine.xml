@@ -7,40 +7,195 @@
     tools:context="com.yang.backup.ActivityExamine">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:gravity="center_vertical"
-        android:layout_height="50dp">
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageview_past_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:src="@drawable/ic_back"
-            />
+            android:contentDescription="@string/examine"
+            android:src="@drawable/ic_back" />
+
         <TextView
-            android:id="@+id/textview_past_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/examine"
             android:textColor="@color/black"
-            android:layout_marginStart="20dp"
-            android:textSize="20sp"
-            android:gravity="left"
-            android:layout_weight="1"
-            />
+            android:textSize="20sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textview_examine_title"
-        android:layout_width="wrap_content"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/ui_deep_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:gravity="end"
         android:layout_weight="1"
-        android:textColor="@color/gray"
-        android:textSize="14sp" />
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TextView_examine_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_examine_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/location"
+                android:cropToPadding="true"
+                android:padding="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_gps" />
+
+            <TextView
+                android:id="@+id/TextView_examine_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_examine_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/start"
+                android:cropToPadding="true"
+                android:padding="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_date" />
+
+            <TextView
+                android:id="@+id/TextView_examine_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/repeat"
+                android:cropToPadding="true"
+                android:padding="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_repeat" />
+
+            <TextView
+                android:id="@+id/TextView_examine_repeat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:text="@string/once"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_examine_remind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/remind"
+                android:cropToPadding="true"
+                android:padding="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_ring" />
+
+            <TextView
+                android:id="@+id/TextView_examine_remind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/none"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_examine_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description"
+                android:cropToPadding="true"
+                android:padding="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_description" />
+
+            <TextView
+                android:id="@+id/TextView_examine_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="end"
+                android:text="@string/none"
+                android:textColor="@color/gray"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -50,11 +205,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:background="@color/ui_light_gray"
         android:gravity="center_horizontal"
-        android:background="@color/ui_light_gray">
-
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -63,7 +217,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/linearlayout_examine_end"
+                android:id="@+id/LinearLayout_examine_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -74,7 +228,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/all"
+                    android:contentDescription="@string/end"
                     android:cropToPadding="true"
                     android:padding="1dp"
                     android:scaleType="fitXY"
@@ -89,7 +243,7 @@
 
 
             <LinearLayout
-                android:id="@+id/linearlayout_examine_delete"
+                android:id="@+id/LinearLayout_examine_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -115,7 +269,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearlayout_examine_modify"
+                android:id="@+id/LinearLayout_examine_modify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
