@@ -167,6 +167,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
                 values.put(DataBaseManager.RecordsTable.REMIND, sRemind);
                 values.put(DataBaseManager.RecordsTable.DESCRIPTION, sDescription);
                 values.put(DataBaseManager.RecordsTable.FINISH, false);
+                values.put(DataBaseManager.RecordsTable.FINISH_TIME, "");
                 if(id == -1){
                     DataBaseManager.getInstance(this).insertRecord(values);
                 }else{

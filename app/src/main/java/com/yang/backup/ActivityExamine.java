@@ -24,8 +24,10 @@ public class ActivityExamine extends Activity {
     TextView repeat;
     TextView remind;
     TextView description;
+    TextView finish_date;
 
-    LinearLayout LinearLayout_location, LinearLayout_remind, LinearLayout_description;
+    LinearLayout LinearLayout_location, LinearLayout_remind, LinearLayout_description,
+            LinearLayout_finish_date;
 
     private int id;
     LinearLayout lLayout_end, lLayout_delete, lLayout_modify;
@@ -68,8 +70,6 @@ public class ActivityExamine extends Activity {
                 m_CalHelp.DATE_FORMAT_DISPLAY);
         date.setText(temp);
 
-
-
         repeat = (TextView) findViewById(R.id.TextView_examine_repeat);
         repeat.setText(table.repeat);
 
@@ -88,7 +88,6 @@ public class ActivityExamine extends Activity {
         }else{
             description.setText(table.description);
         }
-
 
         lLayout_end = (LinearLayout) findViewById(R.id.LinearLayout_examine_end);
         lLayout_end.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +134,18 @@ public class ActivityExamine extends Activity {
                 finish();
             }
         });
+        finish_date = (TextView) findViewById(R.id.TextView_examine_finish_date);
+        LinearLayout_finish_date = (LinearLayout) findViewById(R.id.LinearLayout_examine_finish_date);
+        if(table.finish_time.equals("")){
+            LinearLayout_finish_date.setVisibility(View.GONE);
+        }else{
+            temp = getResources().getString(R.string.finish_time) + ": " + m_CalHelp.CalendarToString(
+                    m_CalHelp.StringToCalendar(table.finish_time, m_CalHelp.DATE_FORMAT_SQL),
+                    m_CalHelp.DATE_FORMAT_DISPLAY);
+            finish_date.setText(temp);
+            lLayout_end.setVisibility(View.GONE);
+            lLayout_modify.setVisibility(View.GONE);
+        }
     }
 
     void FinishTable() {

@@ -16,22 +16,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82cd367b-e573-4b43-9464-459a103a9ebb" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_past.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_finish.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.13/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.13/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFinish.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFinish.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_modify.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_modify.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_future.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_future.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="android_backup.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,25 +55,26 @@
       <file leaf-file-name="activity_examine.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2950819">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.672132">
+              <caret line="233" column="37" selection-start-line="233" selection-start-column="37" selection-end-line="233" selection-end-column="37" />
               <folding>
                 <element signature="e#718#735#0" expanded="true" />
                 <element signature="e#1035#1052#0" expanded="true" />
                 <element signature="e#2396#2414#0" expanded="true" />
                 <element signature="e#3462#3477#0" expanded="true" />
-                <element signature="e#4506#4522#0" expanded="true" />
-                <element signature="e#5046#5060#0" expanded="true" />
-                <element signature="e#5649#5665#0" expanded="true" />
-                <element signature="e#6154#6168#0" expanded="true" />
-                <element signature="e#6763#6784#0" expanded="true" />
-                <element signature="e#7323#7337#0" expanded="true" />
-                <element signature="e#8682#8695#0" expanded="true" />
-                <element signature="e#9060#9073#0" expanded="true" />
-                <element signature="e#9718#9734#0" expanded="true" />
-                <element signature="e#10102#10118#0" expanded="true" />
-                <element signature="e#10763#10779#0" expanded="true" />
-                <element signature="e#11147#11163#0" expanded="true" />
+                <element signature="e#4505#4521#0" expanded="true" />
+                <element signature="e#5045#5059#0" expanded="true" />
+                <element signature="e#5648#5664#0" expanded="true" />
+                <element signature="e#6153#6167#0" expanded="true" />
+                <element signature="e#6762#6783#0" expanded="true" />
+                <element signature="e#7322#7336#0" expanded="true" />
+                <element signature="e#7978#7993#0" expanded="true" />
+                <element signature="e#9795#9808#0" expanded="true" />
+                <element signature="e#10173#10186#0" expanded="true" />
+                <element signature="e#10831#10847#0" expanded="true" />
+                <element signature="e#11215#11231#0" expanded="true" />
+                <element signature="e#11876#11892#0" expanded="true" />
+                <element signature="e#12260#12276#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_finish.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_finish.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_finish.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6057692">
+            <state vertical-scroll-proportion="-4.1311474">
               <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
               <folding>
                 <element signature="e#905#921#0" expanded="true" />
@@ -101,37 +102,49 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="65" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="65" />
+              <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
               <folding>
-                <element signature="e#1406#1449#0" expanded="true" />
-                <element signature="e#2637#2676#0" expanded="true" />
-                <element signature="e#3296#4083#0" expanded="true" />
-                <element signature="e#4082#4083#0" expanded="true" />
-                <element signature="e#4216#4953#0" expanded="true" />
-                <element signature="e#4952#4953#0" expanded="true" />
-                <element signature="e#5086#5416#0" expanded="true" />
-                <element signature="e#5415#5416#0" expanded="true" />
+                <element signature="e#1470#1513#0" expanded="true" />
+                <element signature="e#2699#2738#0" expanded="true" />
+                <element signature="e#3357#4144#0" expanded="true" />
+                <element signature="e#4040#4079#0" expanded="true" />
+                <element signature="e#4143#4144#0" expanded="true" />
+                <element signature="e#4277#5014#0" expanded="true" />
+                <element signature="e#4910#4949#0" expanded="true" />
+                <element signature="e#5013#5014#0" expanded="true" />
+                <element signature="e#5147#5477#0" expanded="true" />
+                <element signature="e#5476#5477#0" expanded="true" />
+                <element signature="e#5804#5850#0" expanded="true" />
+                <element signature="e#6715#6759#0" expanded="true" />
+                <element signature="e#7174#7219#0" expanded="true" />
+                <element signature="e#7634#7680#0" expanded="true" />
+                <element signature="e#8083#8128#0" expanded="true" />
+                <element signature="e#8529#8580#0" expanded="true" />
+                <element signature="e#9027#9073#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="R.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/yang/backup/R.java">
+      <file leaf-file-name="arrays.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4827585">
-              <caret line="3088" column="30" selection-start-line="3088" selection-start-column="30" selection-end-line="3088" selection-end-column="30" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="LinearLayout.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../../software/android_studio2_1/Sdk/platforms/android-24/android.jar!/android/widget/LinearLayout.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.59322">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-2.7413793">
+              <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+              <folding>
+                <element signature="e#4159#4160#0" expanded="true" />
+                <element signature="e#4210#4211#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,7 +153,37 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="90" selection-end-column="52" />
+              <caret line="169" column="71" selection-start-line="169" selection-start-column="71" selection-end-line="169" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.050239235">
+              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataBaseManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/DataBaseManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityFinish.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFinish.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="100" selection-start-line="46" selection-start-column="100" selection-end-line="46" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -3449,11 +3492,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_future.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_past.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFinish.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_finish.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -3983,23 +4026,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="205" column="21" selection-start-line="205" selection-start-column="21" selection-end-line="205" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4009,18 +4035,19 @@
             <element signature="e#1035#1052#0" expanded="true" />
             <element signature="e#2396#2414#0" expanded="true" />
             <element signature="e#3462#3477#0" expanded="true" />
-            <element signature="e#4506#4522#0" expanded="true" />
-            <element signature="e#5046#5060#0" expanded="true" />
-            <element signature="e#5649#5665#0" expanded="true" />
-            <element signature="e#6154#6168#0" expanded="true" />
-            <element signature="e#6763#6784#0" expanded="true" />
-            <element signature="e#7323#7337#0" expanded="true" />
-            <element signature="e#8682#8695#0" expanded="true" />
-            <element signature="e#9060#9073#0" expanded="true" />
-            <element signature="e#9718#9734#0" expanded="true" />
-            <element signature="e#10102#10118#0" expanded="true" />
-            <element signature="e#10763#10779#0" expanded="true" />
-            <element signature="e#11147#11163#0" expanded="true" />
+            <element signature="e#4505#4521#0" expanded="true" />
+            <element signature="e#5045#5059#0" expanded="true" />
+            <element signature="e#5648#5664#0" expanded="true" />
+            <element signature="e#6153#6167#0" expanded="true" />
+            <element signature="e#6762#6783#0" expanded="true" />
+            <element signature="e#7322#7336#0" expanded="true" />
+            <element signature="e#7978#7993#0" expanded="true" />
+            <element signature="e#9795#9808#0" expanded="true" />
+            <element signature="e#10173#10186#0" expanded="true" />
+            <element signature="e#10831#10847#0" expanded="true" />
+            <element signature="e#11215#11231#0" expanded="true" />
+            <element signature="e#11876#11892#0" expanded="true" />
+            <element signature="e#12260#12276#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4236,6 +4263,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17721519">
           <caret line="23" column="26" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4399,14 +4427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/DataBaseManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="135" column="54" selection-start-line="135" selection-start-column="54" selection-end-line="135" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFuture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4439,14 +4459,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFinish.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="100" selection-start-line="46" selection-start-column="100" selection-end-line="46" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/yang/backup/R.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.4827585">
@@ -4455,70 +4467,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.59322">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="90" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="65" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="65" />
-          <folding>
-            <element signature="e#1406#1449#0" expanded="true" />
-            <element signature="e#2637#2676#0" expanded="true" />
-            <element signature="e#3296#4083#0" expanded="true" />
-            <element signature="e#4082#4083#0" expanded="true" />
-            <element signature="e#4216#4953#0" expanded="true" />
-            <element signature="e#4952#4953#0" expanded="true" />
-            <element signature="e#5086#5416#0" expanded="true" />
-            <element signature="e#5415#5416#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2950819">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding>
-            <element signature="e#718#735#0" expanded="true" />
-            <element signature="e#1035#1052#0" expanded="true" />
-            <element signature="e#2396#2414#0" expanded="true" />
-            <element signature="e#3462#3477#0" expanded="true" />
-            <element signature="e#4506#4522#0" expanded="true" />
-            <element signature="e#5046#5060#0" expanded="true" />
-            <element signature="e#5649#5665#0" expanded="true" />
-            <element signature="e#6154#6168#0" expanded="true" />
-            <element signature="e#6763#6784#0" expanded="true" />
-            <element signature="e#7323#7337#0" expanded="true" />
-            <element signature="e#8682#8695#0" expanded="true" />
-            <element signature="e#9060#9073#0" expanded="true" />
-            <element signature="e#9718#9734#0" expanded="true" />
-            <element signature="e#10102#10118#0" expanded="true" />
-            <element signature="e#10763#10779#0" expanded="true" />
-            <element signature="e#11147#11163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_finish.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6057692">
+        <state vertical-scroll-proportion="-4.1311474">
           <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
           <folding>
             <element signature="e#905#921#0" expanded="true" />
@@ -4527,6 +4478,112 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_examine.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.672132">
+          <caret line="233" column="37" selection-start-line="233" selection-start-column="37" selection-end-line="233" selection-end-column="37" />
+          <folding>
+            <element signature="e#718#735#0" expanded="true" />
+            <element signature="e#1035#1052#0" expanded="true" />
+            <element signature="e#2396#2414#0" expanded="true" />
+            <element signature="e#3462#3477#0" expanded="true" />
+            <element signature="e#4505#4521#0" expanded="true" />
+            <element signature="e#5045#5059#0" expanded="true" />
+            <element signature="e#5648#5664#0" expanded="true" />
+            <element signature="e#6153#6167#0" expanded="true" />
+            <element signature="e#6762#6783#0" expanded="true" />
+            <element signature="e#7322#7336#0" expanded="true" />
+            <element signature="e#7978#7993#0" expanded="true" />
+            <element signature="e#9795#9808#0" expanded="true" />
+            <element signature="e#10173#10186#0" expanded="true" />
+            <element signature="e#10831#10847#0" expanded="true" />
+            <element signature="e#11215#11231#0" expanded="true" />
+            <element signature="e#11876#11892#0" expanded="true" />
+            <element signature="e#12260#12276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/DataBaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityFinish.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="100" selection-start-line="46" selection-start-column="100" selection-end-line="46" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityAddOrModify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="169" column="71" selection-start-line="169" selection-start-column="71" selection-end-line="169" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../software/android_studio2_1/Sdk/platforms/android-24/android.jar!/android/widget/LinearLayout.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7413793">
+          <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+          <folding>
+            <element signature="e#4159#4160#0" expanded="true" />
+            <element signature="e#4210#4211#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yang/backup/ActivityExamine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
+          <folding>
+            <element signature="e#1470#1513#0" expanded="true" />
+            <element signature="e#2699#2738#0" expanded="true" />
+            <element signature="e#3357#4144#0" expanded="true" />
+            <element signature="e#4040#4079#0" expanded="true" />
+            <element signature="e#4143#4144#0" expanded="true" />
+            <element signature="e#4277#5014#0" expanded="true" />
+            <element signature="e#4910#4949#0" expanded="true" />
+            <element signature="e#5013#5014#0" expanded="true" />
+            <element signature="e#5147#5477#0" expanded="true" />
+            <element signature="e#5476#5477#0" expanded="true" />
+            <element signature="e#5804#5850#0" expanded="true" />
+            <element signature="e#6715#6759#0" expanded="true" />
+            <element signature="e#7174#7219#0" expanded="true" />
+            <element signature="e#7634#7680#0" expanded="true" />
+            <element signature="e#8083#8128#0" expanded="true" />
+            <element signature="e#8529#8580#0" expanded="true" />
+            <element signature="e#9027#9073#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.050239235">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

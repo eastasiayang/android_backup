@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Backup</string>
+    <string name="app_name">涵涵备忘</string>
     <string name="action_settings">设置</string>
     <string name="title">标题</string>
     <string name="location">地点</string>
@@ -16,7 +16,6 @@
     <string name="all">所有</string>
     <string name="past">过去</string>
     <string name="future">未来</string>
-    <string name="title_alert">tips</string>
     <string name="once">一次性活动</string>
     <string name="every_day">每天</string>
     <string name="every_week">每周</string>
@@ -44,4 +43,5 @@
     <string name="are_you_sure_finish">是否结束此活动？</string>
     <string name="finish">完成</string>
     <string name="no_title">无标题</string>
+    <string name="finish_time">完成时间</string>
 </resources>
