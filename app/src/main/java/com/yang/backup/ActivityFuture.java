@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActivityAll extends AppCompatActivity {
+public class ActivityFuture extends AppCompatActivity {
 
-    private final String TAG = ActivityAll.class.getSimpleName();
+    private final String TAG = ActivityFuture.class.getSimpleName();
     private List<DataBaseManager.RecordsTable> infos;
 
     @Override

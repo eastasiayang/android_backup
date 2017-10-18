@@ -11,17 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yang.basic.LogUtils;
 import com.yang.basic.MyCalendarHelp;
 import com.yang.mydialog.MyDateTimeDialog;
 import com.yang.mydialog.MyRadioDialog;
 
 import java.util.Calendar;
 
-public class ActivityAdd extends Activity implements View.OnClickListener {
+public class ActivityAddOrModify extends Activity implements View.OnClickListener {
 
     private static final String TAG = "ActivityAdd";
 
     private ImageView OK;
+    private TextView title_name;
     private ImageView cancel;
 
     private EditText title;
@@ -40,6 +42,8 @@ public class ActivityAdd extends Activity implements View.OnClickListener {
 
     public MyCalendarHelp m_CalHelp;
 
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +51,14 @@ public class ActivityAdd extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_add);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar_add);
 
+        id = getIntent().getIntExtra("id", -1);
+        LogUtils.v(TAG, "id = " + id);
+
         m_CalHelp = new MyCalendarHelp(this);
         Calendar cal = Calendar.getInstance();
 
         OK = (ImageView) findViewById(R.id.title_ok);
+        title_name = (TextView) findViewById(R.id.title_name);
         cancel = (ImageView) findViewById(R.id.title_cancel);
 
         title = (EditText) findViewById(R.id.edittext_add_title);
@@ -67,9 +75,25 @@ public class ActivityAdd extends Activity implements View.OnClickListener {
         text_repeat = (TextView) findViewById(R.id.textview_add_repeat);
         text_remind = (TextView) findViewById(R.id.textview_add_remind);
 
-        text_start.setText(m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY));
-        cal.add(Calendar.HOUR, 1);
-        text_end.setText(m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY));
+        if(id == -1){
+            text_start.setText(m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY));
+            cal.add(Calendar.HOUR, 1);
+            text_end.setText(m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY));
+        }else{
+            title_name.setText(R.string.modify);
+            DataBaseManager.RecordsTable table = DataBaseManager.getInstance(this).getRecordByID(id);
+            title.setText(table.title);
+            location.setText(table.local);
+            text_start.setText(m_CalHelp.CalendarToString(
+                    m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL),
+                    m_CalHelp.DATE_FORMAT_DISPLAY));
+            text_end.setText(m_CalHelp.CalendarToString(
+                    m_CalHelp.StringToCalendar(table.end_time, m_CalHelp.DATE_FORMAT_SQL),
+                    m_CalHelp.DATE_FORMAT_DISPLAY));
+            text_repeat.setText(table.repeat);
+            text_remind.setText(table.remind);
+            description.setText(table.description);
+        }
 
         OK.setOnClickListener(this);
         cancel.setOnClickListener(this);
@@ -134,7 +158,6 @@ public class ActivityAdd extends Activity implements View.OnClickListener {
                 String sRepeat = text_repeat.getText().toString();
                 String sRemind = text_remind.getText().toString();
 
-
                 ContentValues values = new ContentValues();
 
                 values.put(DataBaseManager.RecordsTable.TITLE, sTitle);
@@ -144,8 +167,12 @@ public class ActivityAdd extends Activity implements View.OnClickListener {
                 values.put(DataBaseManager.RecordsTable.REPEAT, sRepeat);
                 values.put(DataBaseManager.RecordsTable.REMIND, sRemind);
                 values.put(DataBaseManager.RecordsTable.DESCRIPTION, sDescription);
-
-                DataBaseManager.getInstance(this).insertRecord(values);
+                if(id == -1){
+                    DataBaseManager.getInstance(this).insertRecord(values);
+                }else{
+                    values.put(DataBaseManager.RecordsTable.ID, id);
+                    DataBaseManager.getInstance(this).updateRecord(values);
+                }
                 finish();
                 break;
             case R.id.title_cancel:
