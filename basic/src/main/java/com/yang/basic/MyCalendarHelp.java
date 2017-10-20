@@ -98,5 +98,24 @@ public class MyCalendarHelp {
         }
         return null;
     }
+    public String getDurationTime(Calendar start, Calendar end){
+        long day, hour, minute, second;
+        long lDuration;
+        lDuration = (getDiff(start, end));
+        day = lDuration / (24 * 60 * 60 * 1000);
+        hour = (lDuration / (60 * 60 * 1000)) % 24;
+        minute = (lDuration / (60 * 1000)) % 60;
+        second = (lDuration / 1000) % 60;
+
+        if (day != 0) {
+            return day + context.getResources().getString(R.string.day);
+        } else if (hour != 0) {
+            return hour + context.getResources().getString(R.string.hour);
+        } else if (minute != 0){
+            return minute + context.getResources().getString(R.string.minute);
+        }else {
+            return second + context.getResources().getString(R.string.second);
+        }
+    }
 }
 

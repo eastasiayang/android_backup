@@ -60,9 +60,37 @@ public class DataBaseManager {
         RecordsTable table = new RecordsTable();
         Cursor cursor = mDatabase.rawQuery("select * from " + Record_table +
                 " where " + RecordsTable.ID + " = " + iID, null);
-        LogUtils.d(TAG, "select * from " + Record_table +
-                " where " + RecordsTable.ID + " = " + iID );
         if(cursor.getCount() != 1){
+            cursor.close();
+            return null;
+        }
+        cursor.moveToFirst();
+        table.id = cursor.getInt(0);
+        table.title = cursor.getString(1);
+        table.local = cursor.getString(2);
+        table.start_time = cursor.getString(3);
+        table.end_time = cursor.getString(4);
+        if(cursor.getInt(5) == 1){
+            table.finish = true;
+        }else{
+            table.finish = false;
+        }
+        table.finish_time = cursor.getString(6);
+        table.repeat = cursor.getString(7);
+        table.remind = cursor.getString(8);
+        table.description = cursor.getString(9);
+        cursor.close();
+        return table;
+    }
+
+    public RecordsTable getFutureRecord(Calendar cal){
+        RecordsTable table = new RecordsTable();
+        Cursor cursor = mDatabase.rawQuery("select * from " + Record_table +
+                " where " + RecordsTable.START_TIME +
+                ">'" + m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL) + "'"+
+                " and " + RecordsTable.FINISH + "= 0" +
+                " ORDER BY " + RecordsTable.START_TIME, null);
+        if(cursor.getCount() == 0){
             cursor.close();
             return null;
         }
@@ -133,7 +161,7 @@ public class DataBaseManager {
                 " where " + RecordsTable.START_TIME +
                 "<='" + m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL) + "'"+
                 " and " + RecordsTable.FINISH + "= 0" +
-                " ORDER BY " + RecordsTable.START_TIME, null);
+                " ORDER BY " + RecordsTable.END_TIME, null);
         return getJSONObject(cursor);
     }
 
@@ -195,6 +223,11 @@ public class DataBaseManager {
     public boolean DeleteRecordbyID(int iID){
         mDatabase.delete(Record_table, "_ID=?",
                 new String[]{Integer.toString(iID)});
+        return true;
+    }
+
+    public boolean DeleteFinishedRecord(){
+        mDatabase.delete(Record_table, "finish=?", new String[]{"1"});
         return true;
     }
 

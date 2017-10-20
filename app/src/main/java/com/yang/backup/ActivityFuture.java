@@ -28,13 +28,11 @@ import java.util.List;
 public class ActivityFuture extends Activity {
 
     private final String TAG = ActivityFuture.class.getSimpleName();
-    String[] mGroupStrings;
-    private List<List<DataBaseManager.RecordsTable>> record;
-    List<DataBaseManager.RecordsTable> item_list;
 
     ImageView back;
+    TextView tips;
     ExpandableListView expandablelistview;
-    private MyCalendarHelp m_CalHelp;
+    MyCalendarHelp m_CalHelp;
     MyExpandableListAdapter adapter;
 
     @Override
@@ -43,7 +41,6 @@ public class ActivityFuture extends Activity {
         setContentView(R.layout.activity_future);
 
         m_CalHelp = new MyCalendarHelp(this);
-        record = new ArrayList<>();
 
         back = (ImageView) findViewById(R.id.imageview_future_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +49,7 @@ public class ActivityFuture extends Activity {
             }
         });
 
+        tips = (TextView) findViewById(R.id.TextView_future_tips);
         expandablelistview = (ExpandableListView) findViewById(R.id.expandablelistview_future_record);
         expandablelistview.setGroupIndicator(null);
 
@@ -59,9 +57,9 @@ public class ActivityFuture extends Activity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 LogUtils.v(TAG, "position = " + childPosition);
-                int iId = record.get(groupPosition).get(childPosition).id;
+                long lId = adapter.getChildId(groupPosition, childPosition);
                 Intent intent = new Intent();
-                intent.putExtra("id", iId);
+                intent.putExtra("id", (int) lId);
                 intent.setClass(getApplicationContext(), ActivityExamine.class);
                 startActivity(intent);
                 return true;
@@ -72,47 +70,24 @@ public class ActivityFuture extends Activity {
     @Override
     public void onResume() {
         LogUtils.v(TAG, "onResume");
-        record.clear();
         String result;
         result = DataBaseManager.getInstance(this).getFutureRecordList(Calendar.getInstance());
-        try {
-            JSONObject obj = new JSONObject(result);
-            if (obj.has("data")) {
-                JSONArray array = obj.optJSONArray("data");
-                int k = 0;
-                item_list = new ArrayList<>();
-                item_list.clear();
-                mGroupStrings = new String[array.length()];
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject jsonObject = array.optJSONObject(i);
-                    LogUtils.v(TAG, "jsonObject = " + jsonObject);
-
-                    DataBaseManager.RecordsTable item = new DataBaseManager.RecordsTable();
-                    item.coverJson(jsonObject.toString());
-                    if (i == 0) {
-                        mGroupStrings[k++] = item.start_time;
-                    } else {
-                        if (!item.start_time.substring(0, 10).equals(mGroupStrings[k - 1].substring(0, 10))) {
-                            mGroupStrings[k++] = item.start_time;
-                            record.add(item_list);
-                            item_list = new ArrayList<>();
-                            item_list.clear();
-                        }
-                    }
-                    item_list.add(item);
-                    if (i == (array.length() - 1)) {
-                        record.add(item_list);
-                    }
-                }
+        adapter = new MyExpandableListAdapter(this, result);
+        if (adapter.getGroupCount() == 0) {
+            tips.setVisibility(View.VISIBLE);
+            expandablelistview.setVisibility(View.GONE);
+            String temp;
+            temp = getResources().getString(R.string.now_no_future_activity) + "\n\n"
+                    + getResources().getString(R.string.back_to_main_activity_to_add);
+            tips.setText(temp);
+        } else {
+            expandablelistview.setVisibility(View.VISIBLE);
+            tips.setVisibility(View.GONE);
+            expandablelistview.setAdapter(adapter);
+            int groupCount = expandablelistview.getCount();
+            for (int i = 0; i < groupCount; i++) {
+                expandablelistview.expandGroup(i);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        adapter = new MyExpandableListAdapter(this, mGroupStrings, record);
-        expandablelistview.setAdapter(adapter);
-        int groupCount = expandablelistview.getCount();
-        for (int i = 0; i < groupCount; i++) {
-            expandablelistview.expandGroup(i);
         }
         super.onResume();
     }

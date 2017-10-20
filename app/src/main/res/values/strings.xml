@@ -14,8 +14,7 @@
     <string name="delete">删除</string>
     <string name="modify">修改</string>
     <string name="all">所有</string>
-    <string name="past">过去</string>
-    <string name="future">未来</string>
+    <string name="future">未到期</string>
     <string name="once">一次性活动</string>
     <string name="every_day">每天</string>
     <string name="every_week">每周</string>
@@ -36,12 +35,18 @@
     <string name="one_week_before">1周前</string>
     <string name="examine">查看活动</string>
     <string name="about">关于</string>
-    <string name="day">天</string>
-    <string name="hour">小时</string>
-    <string name="minute">分钟</string>
     <string name="are_you_sure_delete">是否删除此活动？</string>
     <string name="are_you_sure_finish">是否结束此活动？</string>
-    <string name="finish">完成</string>
     <string name="no_title">无标题</string>
     <string name="finish_time">完成时间</string>
+    <string name="now_no_activity">当前没有待办活动</string>
+    <string name="now_no_finish_activity">当前没有已结束的活动</string>
+    <string name="now_no_future_activity">当前没有未到期的活动</string>
+    <string name="next_activity">下一条活动是</string>
+    <string name="start_time">距离开始时间还有</string>
+    <string name="press_button_to_add">请点击右上角的+按钮添加一条吧!</string>
+    <string name="clear_all">清空</string>
+    <string name="are_you_sure_delete_all_finish">是否删除所有已结束的活动？</string>
+    <string name="choose_an_activity_to_finish">请选择一条活动结束它吧！</string>
+    <string name="back_to_main_activity_to_add">请返回主界面添加一条吧!</string>
 </resources>

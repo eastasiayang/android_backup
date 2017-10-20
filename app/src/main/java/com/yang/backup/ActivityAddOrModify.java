@@ -144,6 +144,9 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
 
             case R.id.title_ok:
                 String sTitle = title.getText().toString();
+                if(sTitle.equals("")){
+                    sTitle = getResources().getString(R.string.no_title);
+                }
                 String sLocation = location.getText().toString();
                 String sDescription = description.getText().toString();
                 String sStart_time = m_CalHelp.CalendarToString(

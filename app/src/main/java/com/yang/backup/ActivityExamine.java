@@ -47,11 +47,7 @@ public class ActivityExamine extends Activity {
         LogUtils.v(TAG, "id = " + id);
 
         title = (TextView) findViewById(R.id.TextView_examine_title);
-        if(table.title.equals("")){
-            title.setText(getResources().getString(R.string.no_title));
-        }else{
-            title.setText(table.title);
-        }
+        title.setText(table.title);
 
         location = (TextView) findViewById(R.id.TextView_examine_location);
         LinearLayout_location = (LinearLayout) findViewById(R.id.LinearLayout_examine_location);

@@ -6,12 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yang.basic.LogUtils;
@@ -26,122 +34,163 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
     private final String TAG = MainActivity.class.getSimpleName();
-    String[] mGroupStrings;
-    private List<List<DataBaseManager.RecordsTable>> record;
-    List<DataBaseManager.RecordsTable> item_list;
-    private MyHandler m_handler;
+    final int UPDATE_DELAY_TIMES = 6000;
+
+    MyHandler m_handler;
     ExpandableListView expandablelistview;
-    private MyCalendarHelp m_CalHelp;
+    MyCalendarHelp m_CalHelp;
     MyExpandableListAdapter adapter;
-    LinearLayout lLayout_finish, lLayout_add, lLayout_future;
-    TextView title;
+
+    LinearLayout LinearLayout_finish, LinearLayout_add, LinearLayout_future;
+    TextView title, tips;
+    ImageView add;
+    DrawerLayout mDrawerLayout;
+
+    ImageView drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar_main);
+        initData();
+        initView();
 
-        m_handler = new MyHandler();
-        m_handler.sendEmptyMessageDelayed(MyHandler.UPDATE_LIST, 60000);
-        m_CalHelp = new MyCalendarHelp(this);
+        m_handler.sendEmptyMessageDelayed(MyHandler.UPDATE_LIST, UPDATE_DELAY_TIMES);
+        mDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                LogUtils.i(TAG, "抽屉关闭了...");
+            }
 
-        title = (TextView) findViewById(R.id.titlebar_main_date);
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                LogUtils.i(TAG, "抽屉打开了...");
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                LogUtils.i(TAG, "抽屉在滑动...");
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                switch (newState) {
+                    case DrawerLayout.STATE_DRAGGING:
+                        LogUtils.i(TAG, "拖动状态");
+                        break;
+                    case DrawerLayout.STATE_IDLE:
+                        LogUtils.i(TAG, "精巧状态");
+                        break;
+                    case DrawerLayout.STATE_SETTLING:
+                        LogUtils.i(TAG, "设置状态");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
         title.setText(m_CalHelp.CalendarToString(
                 Calendar.getInstance(), m_CalHelp.DATE_FORMAT_DISPLAY).substring(0, 8));
 
-        expandablelistview = (ExpandableListView) findViewById(R.id.expandablelistview_main_record);
         expandablelistview.setGroupIndicator(null);
         expandablelistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             public boolean onChildClick(ExpandableListView parent, View v,
-            int groupPosition, int childPosition, long id) {
-                LogUtils.v(TAG, "position = " + childPosition);
-                int iId = record.get(groupPosition).get(childPosition).id;
+                                        int groupPosition, int childPosition, long id) {
+                long lId = adapter.getChildId(groupPosition, childPosition);
                 Intent intent = new Intent();
-                intent.putExtra("id", iId);
+                intent.putExtra("id", (int) lId);
                 intent.setClass(getApplicationContext(), ActivityExamine.class);
                 startActivity(intent);
                 return true;
             }
         });
 
-        lLayout_finish = (LinearLayout) findViewById(R.id.linearlayout_main_finish);
-        lLayout_finish.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, ActivityFinish.class);
-                startActivity(intent);
-            }
-        });
-        lLayout_add = (LinearLayout) findViewById(R.id.linearlayout_main_add);
-        lLayout_add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, ActivityAddOrModify.class);
-                startActivity(intent);
-            }
-        });
-        lLayout_future = (LinearLayout) findViewById(R.id.linearlayout_main_future);
-        lLayout_future.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, ActivityFuture.class);
-                startActivity(intent);
-            }
-        });
-        record = new ArrayList<>();
+        drawer.setOnClickListener(this);
+        add.setOnClickListener(this);
+        LinearLayout_finish.setOnClickListener(this);
+        LinearLayout_add.setOnClickListener(this);
+        LinearLayout_future.setOnClickListener(this);
+    }
+
+    void initData() {
+        m_handler = new MyHandler();
+        m_CalHelp = new MyCalendarHelp(this);
+    }
+
+    void initView() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (ImageView) findViewById(R.id.ImageView_main_drawer);
+        title = (TextView) findViewById(R.id.TextView_main_date);
+        add = (ImageView) findViewById(R.id.ImageView_main_add);
+        tips = (TextView) findViewById(R.id.TextView_main_tips);
+        expandablelistview = (ExpandableListView) findViewById(R.id.ExpandableListView_main_record);
+        LinearLayout_finish = (LinearLayout) findViewById(R.id.LinearLayout_drawer_finish);
+        LinearLayout_add = (LinearLayout) findViewById(R.id.LinearLayout_drawer_add);
+        LinearLayout_future = (LinearLayout) findViewById(R.id.LinearLayout_drawer_future);
     }
 
     @Override
     public void onResume() {
         LogUtils.v(TAG, "onResume");
-        record.clear();
-        String result;
-        result = DataBaseManager.getInstance(this).getStartedRecordList(Calendar.getInstance());
-        try {
-            JSONObject obj = new JSONObject(result);
-            if (obj.has("data")) {
-                JSONArray array = obj.optJSONArray("data");
-                int k = 0;
-                item_list = new ArrayList<>();
-                item_list.clear();
-                mGroupStrings = new String[array.length()];
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject jsonObject = array.optJSONObject(i);
-                    LogUtils.v(TAG, "jsonObject = " + jsonObject);
-
-                    DataBaseManager.RecordsTable item = new DataBaseManager.RecordsTable();
-                    item.coverJson(jsonObject.toString());
-                    if (i == 0) {
-                        mGroupStrings[k++] = item.start_time;
-                    } else {
-                        if (!item.start_time.substring(0, 10).equals(mGroupStrings[k - 1].substring(0, 10))) {
-                            mGroupStrings[k++] = item.start_time;
-                            record.add(item_list);
-                            item_list = new ArrayList<>();
-                            item_list.clear();
-                        }
-                    }
-                    item_list.add(item);
-                    if (i == (array.length() - 1)) {
-                        record.add(item_list);
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        adapter = new MyExpandableListAdapter(this, mGroupStrings, record);
-        expandablelistview.setAdapter(adapter);
-        int groupCount = expandablelistview.getCount();
-        for (int i = 0; i < groupCount; i++) {
-            expandablelistview.expandGroup(i);
-        }
         super.onResume();
+        String result;
+        DataBaseManager.RecordsTable table;
+        result = DataBaseManager.getInstance(this).getStartedRecordList(Calendar.getInstance());
+        adapter = new MyExpandableListAdapter(this, result);
+        if (adapter.getGroupCount() == 0) {
+            tips.setVisibility(View.VISIBLE);
+            expandablelistview.setVisibility(View.GONE);
+            table = DataBaseManager.getInstance(this).getFutureRecord(Calendar.getInstance());
+            String temp;
+            if(table != null){
+            temp = getResources().getString(R.string.now_no_activity) + ", "
+                    + getResources().getString(R.string.next_activity) + "\n\n"
+                    + table.title + "\n\n" + getResources().getString(R.string.start_time)
+                    + m_CalHelp.getDurationTime(Calendar.getInstance(),
+                    m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL));
+            }else{
+                temp = getResources().getString(R.string.now_no_activity) + "\n\n"
+                + getResources().getString(R.string.press_button_to_add);
+            }
+            tips.setText(temp);
+        } else {
+            expandablelistview.setVisibility(View.VISIBLE);
+            tips.setVisibility(View.GONE);
+            expandablelistview.setAdapter(adapter);
+            int groupCount = expandablelistview.getCount();
+            for (int i = 0; i < groupCount; i++) {
+                expandablelistview.expandGroup(i);
+            }
+        }
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ImageView_main_drawer:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                break;
+            case R.id.LinearLayout_drawer_finish:
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, ActivityFinish.class);
+                startActivity(intent);
+                break;
+            case R.id.LinearLayout_drawer_add:
+            case R.id.ImageView_main_add:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, ActivityAddOrModify.class);
+                startActivity(intent);
+                break;
+            case R.id.LinearLayout_drawer_future:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, ActivityFuture.class);
+                startActivity(intent);
+            default:
+                break;
+        }
     }
 
     class MyHandler extends Handler {
@@ -154,9 +203,8 @@ public class MainActivity extends Activity {
                 switch (msg.what) {
                     case UPDATE_LIST:
                         adapter.notifyDataSetChanged();
-                        sendEmptyMessageDelayed(UPDATE_LIST, 60000);
+                        sendEmptyMessageDelayed(UPDATE_LIST, UPDATE_DELAY_TIMES);
                         break;
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();

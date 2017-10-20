@@ -65,7 +65,6 @@
     <color name="orchid">#DA70D6</color><!--淡紫色 -->
     <color name="thistle">#D8BFD8</color><!--蓟色 -->
     <color name="lightgray">#D3D3D3</color><!--亮灰色 -->
-    <color name="lightgrey">#D3D3D3</color><!--亮灰色 -->
     <color name="tan">#D2B48C</color><!--茶色 -->
     <color name="chocolate">#D2691E</color><!--巧可力色 -->
     <color name="peru">#CD853F</color><!--秘鲁色 -->
@@ -83,7 +82,6 @@
     <color name="greenyellow">#ADFF2F</color><!--黄绿色 -->
     <color name="lightblue">#ADD8E6</color><!--亮蓝色 -->
     <color name="darkgray">#A9A9A9</color><!--暗灰色 -->
-    <color name="darkgrey">#A9A9A9</color><!--暗灰色 -->
     <color name="brown">#A52A2A</color><!--褐色 -->
     <color name="sienna">#A0522D</color><!--赭色 -->
     <color name="darkorchid">#9932CC</color><!--暗紫色-->
