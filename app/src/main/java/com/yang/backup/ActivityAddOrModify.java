@@ -84,10 +84,10 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
             title.setText(table.title);
             location.setText(table.local);
             text_start.setText(m_CalHelp.CalendarToString(
-                    m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL),
+                    m_CalHelp.StringToCalendar(table.start_time),
                     m_CalHelp.DATE_FORMAT_DISPLAY));
             text_end.setText(m_CalHelp.CalendarToString(
-                    m_CalHelp.StringToCalendar(table.end_time, m_CalHelp.DATE_FORMAT_SQL),
+                    m_CalHelp.StringToCalendar(table.end_time),
                     m_CalHelp.DATE_FORMAT_DISPLAY));
             text_repeat.setText(table.repeat);
             text_remind.setText(table.remind);
@@ -109,14 +109,14 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.linearlayout_add_start:
                 String sDate = text_start.getText().toString();
-                calendar = m_CalHelp.StringToCalendar(sDate, m_CalHelp.DATE_FORMAT_DISPLAY);
+                calendar = m_CalHelp.StringToCalendar(sDate);
                 m_DateTime_Dialog = new MyDateTimeDialog(this, new MyDateTimeDialog.ResultHandler() {
                     @Override
                     public void handle(Calendar cal) {
                         text_start.setText(
                                 m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY));
                         Calendar end_cal = m_CalHelp.StringToCalendar(
-                                text_end.getText().toString(), m_CalHelp.DATE_FORMAT_DISPLAY);
+                                text_end.getText().toString());
                         cal.add(Calendar.HOUR, 1);
                         if (end_cal.before(cal)) {
                             text_end.setText(
@@ -129,7 +129,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
                 break;
             case R.id.linearlayout_add_end:
                 sDate = text_end.getText().toString();
-                calendar = m_CalHelp.StringToCalendar(sDate, m_CalHelp.DATE_FORMAT_DISPLAY);
+                calendar = m_CalHelp.StringToCalendar(sDate);
 
                 m_DateTime_Dialog = new MyDateTimeDialog(this, new MyDateTimeDialog.ResultHandler() {
                     @Override
@@ -150,12 +150,10 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
                 String sLocation = location.getText().toString();
                 String sDescription = description.getText().toString();
                 String sStart_time = m_CalHelp.CalendarToString(
-                        m_CalHelp.StringToCalendar(text_start.getText().toString(),
-                                m_CalHelp.DATE_FORMAT_DISPLAY),
+                        m_CalHelp.StringToCalendar(text_start.getText().toString()),
                         m_CalHelp.DATE_FORMAT_SQL);
                 String sEnd_time = m_CalHelp.CalendarToString(
-                        m_CalHelp.StringToCalendar(text_end.getText().toString(),
-                                m_CalHelp.DATE_FORMAT_DISPLAY),
+                        m_CalHelp.StringToCalendar(text_end.getText().toString()),
                         m_CalHelp.DATE_FORMAT_SQL);
                 String sRepeat = text_repeat.getText().toString();
                 String sRemind = text_remind.getText().toString();

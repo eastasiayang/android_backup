@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/basic/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="24.0.0"
-        sha1="b593911fe8dfd33a21de321cef9fe2fb6c951088">
-        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/pre-dexed/debug/android_backup-basic-unspecified_2fc67c9c773b388b10f1df007ef26f9c24b7ebe7.jar" />
-    </item>
-
-</items>
+<items version="2" />

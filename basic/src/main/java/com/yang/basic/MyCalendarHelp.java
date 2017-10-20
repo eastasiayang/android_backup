@@ -20,14 +20,14 @@ public class MyCalendarHelp {
         context = con;
     }
 
-    public Calendar StringToCalendar(String String, int iType) {
+    public Calendar StringToCalendar(String String) {
         Calendar temp = Calendar.getInstance();
         Date dt = null;
         try {
-            if (iType == DATE_FORMAT_SQL) {
-                dt = df1.parse(String);
-            } else {
+            if (String.contains("年")) {
                 dt = df2.parse(String);
+            } else {
+                dt = df1.parse(String);
             }
         } catch (ParseException e) {
             e.printStackTrace();

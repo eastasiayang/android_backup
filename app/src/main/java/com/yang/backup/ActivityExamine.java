@@ -59,10 +59,10 @@ public class ActivityExamine extends Activity {
 
         date = (TextView) findViewById(R.id.TextView_examine_date);
         String temp = m_CalHelp.CalendarToString(
-                m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL),
+                m_CalHelp.StringToCalendar(table.start_time),
                 m_CalHelp.DATE_FORMAT_DISPLAY) + " - "
                 + m_CalHelp.CalendarToString(
-                m_CalHelp.StringToCalendar(table.end_time, m_CalHelp.DATE_FORMAT_SQL),
+                m_CalHelp.StringToCalendar(table.end_time),
                 m_CalHelp.DATE_FORMAT_DISPLAY);
         date.setText(temp);
 
@@ -136,7 +136,7 @@ public class ActivityExamine extends Activity {
             LinearLayout_finish_date.setVisibility(View.GONE);
         }else{
             temp = getResources().getString(R.string.finish_time) + ": " + m_CalHelp.CalendarToString(
-                    m_CalHelp.StringToCalendar(table.finish_time, m_CalHelp.DATE_FORMAT_SQL),
+                    m_CalHelp.StringToCalendar(table.finish_time),
                     m_CalHelp.DATE_FORMAT_DISPLAY);
             finish_date.setText(temp);
             lLayout_end.setVisibility(View.GONE);
@@ -150,8 +150,8 @@ public class ActivityExamine extends Activity {
         DataBaseManager.RecordsTable new_table = (DataBaseManager.RecordsTable) table.clone();
 
         Calendar start, end;
-        start = m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL);
-        end = m_CalHelp.StringToCalendar(table.end_time, m_CalHelp.DATE_FORMAT_SQL);
+        start = m_CalHelp.StringToCalendar(table.start_time);
+        end = m_CalHelp.StringToCalendar(table.end_time);
 
         table.finish = true;
         table.finish_time = m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_SQL);

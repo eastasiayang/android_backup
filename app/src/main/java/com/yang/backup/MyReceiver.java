@@ -5,7 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.yang.basic.LogUtils;
+
+import java.util.Calendar;
+
 public class MyReceiver extends BroadcastReceiver {
+    private final String TAG = "MyReceiver";
+    MyNotificationManager notify;
+
     public MyReceiver() {
     }
 
@@ -15,10 +22,16 @@ public class MyReceiver extends BroadcastReceiver {
             return;
         }
         String action = intent.getAction();
-        //if (TextUtils.equals(action, IntentConst.Action.matchRemind)) {
-            //通知比赛开始
-        //    long matchID = intent.getLongExtra(Net.Param.ID, 0);
-        //    showNotificationRemindMe(context, matchID);
-        //}
+        LogUtils.d(TAG, action);
+        if (TextUtils.equals(action, BackupConst.ParamsConst.NOTIFICATION)) {
+            int id = intent.getIntExtra(BackupConst.ParamsConst.ID, 0);
+            String title = intent.getStringExtra(BackupConst.ParamsConst.TITLE);
+            String message = intent.getStringExtra(BackupConst.ParamsConst.MESSAGE);
+            LogUtils.d(TAG, "title = " + title);
+            LogUtils.d(TAG, "message = " + message);
+            notify = new MyNotificationManager(context, id);
+            notify.setMessage(title, message);
+            notify.showNormal();
+        }
     }
 }

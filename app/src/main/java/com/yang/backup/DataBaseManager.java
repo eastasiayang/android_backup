@@ -176,7 +176,12 @@ public class DataBaseManager {
 
 
     public boolean insertRecord(ContentValues values){
-        mDatabase.insertWithOnConflict(Record_table, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        long count = mDatabase.insertWithOnConflict(Record_table, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        MyAlarmManager alarm = new MyAlarmManager(m_context);
+        String sTitle = values.getAsString(RecordsTable.TITLE);
+        String sStart_time = values.getAsString(RecordsTable.START_TIME);
+        String sEnd_time = values.getAsString(RecordsTable.END_TIME);
+        alarm.setAlarm((int)count, sTitle, sEnd_time, m_CalHelp.StringToCalendar(sStart_time));
         return true;
     }
 
@@ -192,19 +197,26 @@ public class DataBaseManager {
         values.put(RecordsTable.REPEAT, table.repeat);
         values.put(RecordsTable.REMIND, table.remind);
         values.put(RecordsTable.DESCRIPTION, table.description);
-        mDatabase.insertWithOnConflict(Record_table, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        long count = mDatabase.insertWithOnConflict(Record_table, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        MyAlarmManager alarm = new MyAlarmManager(m_context);
+        alarm.setAlarm((int)count, table.title, table.end_time, m_CalHelp.StringToCalendar(table.start_time));
         return true;
     }
 
     public boolean updateRecord(ContentValues values){
         mDatabase.update(Record_table, values, "_ID=?",
                 new String[]{values.getAsString(RecordsTable.ID)});
+        MyAlarmManager alarm = new MyAlarmManager(m_context);
+        int id = values.getAsInteger(RecordsTable.ID);
+        String sTitle = values.getAsString(RecordsTable.TITLE);
+        String sStart_time = values.getAsString(RecordsTable.START_TIME);
+        String sEnd_time = values.getAsString(RecordsTable.END_TIME);
+        alarm.setAlarm(id, sTitle, sEnd_time, m_CalHelp.StringToCalendar(sStart_time));
         return true;
     }
 
     public boolean updateRecord(RecordsTable table){
         ContentValues values = new ContentValues();
-
         values.put(RecordsTable.TITLE, table.title);
         values.put(RecordsTable.LOCAL, table.local);
         values.put(RecordsTable.START_TIME, table.start_time);
@@ -214,9 +226,10 @@ public class DataBaseManager {
         values.put(RecordsTable.REPEAT, table.repeat);
         values.put(RecordsTable.REMIND, table.remind);
         values.put(RecordsTable.DESCRIPTION, table.description);
-
         mDatabase.update(Record_table, values, "_ID=?",
                 new String[]{Integer.toString(table.id)});
+        MyAlarmManager alarm = new MyAlarmManager(m_context);
+        alarm.setAlarm(table.id, table.title, table.end_time, m_CalHelp.StringToCalendar(table.start_time));
         return true;
     }
 

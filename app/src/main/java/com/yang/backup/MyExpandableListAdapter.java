@@ -27,6 +27,11 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     private List<List<DataBaseManager.RecordsTable>> record;
     List<DataBaseManager.RecordsTable> item_list;
 
+    public MyExpandableListAdapter(Context c){
+        mContext = c;
+        m_CalHelp = new MyCalendarHelp(mContext);
+    }
+
     public MyExpandableListAdapter(Context c, String result) {
         mContext = c;
         m_CalHelp = new MyCalendarHelp(mContext);
@@ -99,9 +104,6 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        LogUtils.d(TAG, "groupPosition = " + groupPosition);
-        LogUtils.d(TAG, "childPosition = " + childPosition);
-        LogUtils.d(TAG, "childPosition = " + record.get(groupPosition).get(childPosition).id);
         return record.get(groupPosition).get(childPosition).id;
     }
 
@@ -118,7 +120,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = View.inflate(mContext, R.layout.item_main_group, null);
         TextView title = (TextView) convertView.findViewById(R.id.textview_item_main_group_title);
         String s = mGroupStrings[groupPosition];
-        Calendar cal = m_CalHelp.StringToCalendar(s, m_CalHelp.DATE_FORMAT_SQL);
+        Calendar cal = m_CalHelp.StringToCalendar(s);
         String e = m_CalHelp.CalendarToString(cal, m_CalHelp.DATE_FORMAT_DISPLAY);
         String temp = e.substring(0, 11) + m_CalHelp.getWeekString(cal) + " "
                 + mContext.getResources().getString(R.string.lunar) + " "
@@ -150,11 +152,11 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    String getDuration(String start, String end) {
+    public String getDuration(String start, String end) {
         Calendar C_start, C_end, C_now;
         String temp1, temp2;
-        C_start = m_CalHelp.StringToCalendar(start, m_CalHelp.DATE_FORMAT_SQL);
-        C_end = m_CalHelp.StringToCalendar(end, m_CalHelp.DATE_FORMAT_SQL);
+        C_start = m_CalHelp.StringToCalendar(start);
+        C_end = m_CalHelp.StringToCalendar(end);
         C_now = Calendar.getInstance();
         if(C_now.before(C_start)){
             temp1 = mContext.getResources().getString(R.string.will_start);

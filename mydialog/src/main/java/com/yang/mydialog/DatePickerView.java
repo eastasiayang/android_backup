@@ -10,12 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.yang.basic.LogUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -104,7 +100,7 @@ public class DatePickerView extends View {
      * 选择选中的item的index
      */
     public void setSelected(int selected) {
-        LogUtils.d(TAG, "selected = " + selected);
+        //LogUtils.d(TAG, "selected = " + selected);
         mCurrentSelected = selected;
         if (loop) {
             int distance = mDataList.size() / 2 - mCurrentSelected;
@@ -218,10 +214,10 @@ public class DatePickerView extends View {
         float d = MARGIN_ALPHA * mMinTextSize * position + type * mMoveLen;
         float scale = parabola(mViewHeight / 4.0f, d);
         float size = (mMaxTextSize - mMinTextSize) * scale + mMinTextSize;
-        LogUtils.d(TAG, "mMaxTextSize = " + mMaxTextSize);
-        LogUtils.d(TAG, "mMinTextSize = " + mMinTextSize);
-        LogUtils.d(TAG, "scale = " + scale);
-        LogUtils.d(TAG, "size = " + size);
+        //LogUtils.d(TAG, "mMaxTextSize = " + mMaxTextSize);
+        //LogUtils.d(TAG, "mMinTextSize = " + mMinTextSize);
+        //LogUtils.d(TAG, "scale = " + scale);
+        //LogUtils.d(TAG, "size = " + size);
         nPaint.setTextSize(size);
         nPaint.setAlpha((int) ((mMaxTextAlpha - mMinTextAlpha) * scale + mMinTextAlpha));
         float y = (float) (mViewHeight / 2.0 + type * d);

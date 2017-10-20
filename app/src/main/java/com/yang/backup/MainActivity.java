@@ -1,38 +1,22 @@
 package com.yang.backup;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yang.basic.LogUtils;
-import com.yang.basic.LunarCalendar;
 import com.yang.basic.MyCalendarHelp;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private final String TAG = MainActivity.class.getSimpleName();
@@ -47,7 +31,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     TextView title, tips;
     ImageView add;
     DrawerLayout mDrawerLayout;
-
     ImageView drawer;
 
     @Override
@@ -95,7 +78,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         title.setText(m_CalHelp.CalendarToString(
                 Calendar.getInstance(), m_CalHelp.DATE_FORMAT_DISPLAY).substring(0, 8));
-
         expandablelistview.setGroupIndicator(null);
         expandablelistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             public boolean onChildClick(ExpandableListView parent, View v,
@@ -151,7 +133,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     + getResources().getString(R.string.next_activity) + "\n\n"
                     + table.title + "\n\n" + getResources().getString(R.string.start_time)
                     + m_CalHelp.getDurationTime(Calendar.getInstance(),
-                    m_CalHelp.StringToCalendar(table.start_time, m_CalHelp.DATE_FORMAT_SQL));
+                    m_CalHelp.StringToCalendar(table.start_time));
             }else{
                 temp = getResources().getString(R.string.now_no_activity) + "\n\n"
                 + getResources().getString(R.string.press_button_to_add);
