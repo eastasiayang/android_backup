@@ -50,4 +50,10 @@
     <string name="are_you_sure_delete_all_finish">是否删除所有已结束的活动？</string>
     <string name="choose_an_activity_to_finish">请选择一条活动结束它吧！</string>
     <string name="back_to_main_activity_to_add">请返回主界面添加一条吧!</string>
+    <string name="setting">设置</string>
+    <string name="not_login">未登录</string>
+    <string name="click_to_login">点击登录云平台</string>
+    <string name="synchronize">同步</string>
+    <string name="share">分享</string>
+    <string name="money">打赏开发者</string>
 </resources>

@@ -22,15 +22,12 @@ public class MyReceiver extends BroadcastReceiver {
             return;
         }
         String action = intent.getAction();
-        LogUtils.d(TAG, action);
         if (TextUtils.equals(action, BackupConst.ParamsConst.NOTIFICATION)) {
             int id = intent.getIntExtra(BackupConst.ParamsConst.ID, 0);
-            String title = intent.getStringExtra(BackupConst.ParamsConst.TITLE);
-            String message = intent.getStringExtra(BackupConst.ParamsConst.MESSAGE);
-            LogUtils.d(TAG, "title = " + title);
-            LogUtils.d(TAG, "message = " + message);
+            String str1 = intent.getStringExtra(BackupConst.ParamsConst.STRING1);
+            String str2 = intent.getStringExtra(BackupConst.ParamsConst.STRING2);
             notify = new MyNotificationManager(context, id);
-            notify.setMessage(title, message);
+            notify.setMessage(str1, str2);
             notify.showNormal();
         }
     }

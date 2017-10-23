@@ -204,18 +204,26 @@ public class DataBaseManager {
     }
 
     public boolean updateRecord(ContentValues values){
+        RecordsTable temp = getRecordByID(values.getAsInteger(RecordsTable.ID));
+        if(!temp.start_time.equals(values.getAsString(RecordsTable.START_TIME))){
+            MyAlarmManager alarm = new MyAlarmManager(m_context);
+            int id = values.getAsInteger(RecordsTable.ID);
+            String sTitle = values.getAsString(RecordsTable.TITLE);
+            String sStart_time = values.getAsString(RecordsTable.START_TIME);
+            String sEnd_time = values.getAsString(RecordsTable.END_TIME);
+            alarm.setAlarm(id, sTitle, sEnd_time, m_CalHelp.StringToCalendar(sStart_time));
+        }
         mDatabase.update(Record_table, values, "_ID=?",
                 new String[]{values.getAsString(RecordsTable.ID)});
-        MyAlarmManager alarm = new MyAlarmManager(m_context);
-        int id = values.getAsInteger(RecordsTable.ID);
-        String sTitle = values.getAsString(RecordsTable.TITLE);
-        String sStart_time = values.getAsString(RecordsTable.START_TIME);
-        String sEnd_time = values.getAsString(RecordsTable.END_TIME);
-        alarm.setAlarm(id, sTitle, sEnd_time, m_CalHelp.StringToCalendar(sStart_time));
         return true;
     }
 
     public boolean updateRecord(RecordsTable table){
+        RecordsTable temp = getRecordByID(table.id);
+        if(!temp.start_time.equals(table.start_time)){
+            MyAlarmManager alarm = new MyAlarmManager(m_context);
+            alarm.setAlarm(table.id, table.title, table.end_time, m_CalHelp.StringToCalendar(table.start_time));
+        }
         ContentValues values = new ContentValues();
         values.put(RecordsTable.TITLE, table.title);
         values.put(RecordsTable.LOCAL, table.local);
@@ -228,8 +236,6 @@ public class DataBaseManager {
         values.put(RecordsTable.DESCRIPTION, table.description);
         mDatabase.update(Record_table, values, "_ID=?",
                 new String[]{Integer.toString(table.id)});
-        MyAlarmManager alarm = new MyAlarmManager(m_context);
-        alarm.setAlarm(table.id, table.title, table.end_time, m_CalHelp.StringToCalendar(table.start_time));
         return true;
     }
 

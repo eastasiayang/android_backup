@@ -34,6 +34,7 @@ public class ActivityFuture extends Activity {
     ExpandableListView expandablelistview;
     MyCalendarHelp m_CalHelp;
     MyExpandableListAdapter adapter;
+    MyHandler m_handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,11 @@ public class ActivityFuture extends Activity {
         setContentView(R.layout.activity_future);
 
         m_CalHelp = new MyCalendarHelp(this);
+        m_handler = new MyHandler(new MyHandler.HandlerCallback(){
+            @Override
+            public void handle() {
+                onResume();
+            }});
 
         back = (ImageView) findViewById(R.id.imageview_future_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +76,7 @@ public class ActivityFuture extends Activity {
     @Override
     public void onResume() {
         LogUtils.v(TAG, "onResume");
+        m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
         String result;
         result = DataBaseManager.getInstance(this).getFutureRecordList(Calendar.getInstance());
         adapter = new MyExpandableListAdapter(this, result);
@@ -90,5 +97,18 @@ public class ActivityFuture extends Activity {
             }
         }
         super.onResume();
+    }
+    @Override
+    public void onPause(){
+        LogUtils.d(TAG, "onDestroy");
+        m_handler.removeCallbacksAndMessages(null);
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy(){
+        LogUtils.d(TAG, "onDestroy");
+        m_handler.removeCallbacksAndMessages(null);
+        super.onDestroy();
     }
 }

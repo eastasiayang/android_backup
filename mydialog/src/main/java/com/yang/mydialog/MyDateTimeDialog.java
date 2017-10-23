@@ -111,11 +111,7 @@ public class MyDateTimeDialog {
         lunar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(bLunar){
-                    bLunar = false;
-                }else{
-                    bLunar = true;
-                }
+                bLunar = !bLunar;
                 InitDatePicker(false);
             }
         });

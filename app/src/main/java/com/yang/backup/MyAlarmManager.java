@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import com.yang.basic.LogUtils;
+
 import java.util.Calendar;
 
 public class MyAlarmManager {
@@ -18,11 +20,12 @@ public class MyAlarmManager {
         mAlarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
     }
 
-    public void setAlarm(int id, String title, String message, Calendar cal){
+    public void setAlarm(int id, String str1, String str2, Calendar cal){
+        LogUtils.d(TAG, "cal = " + cal);
         Intent intent = new Intent(BackupConst.ParamsConst.NOTIFICATION);
         intent.putExtra(BackupConst.ParamsConst.ID, id);
-        intent.putExtra(BackupConst.ParamsConst.TITLE, title);
-        intent.putExtra(BackupConst.ParamsConst.MESSAGE, message);
+        intent.putExtra(BackupConst.ParamsConst.STRING1, str1);
+        intent.putExtra(BackupConst.ParamsConst.STRING2, str2);
         intent.setClass(mContext, MyReceiver.class);
         mPending = PendingIntent.getBroadcast(mContext, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), mPending);

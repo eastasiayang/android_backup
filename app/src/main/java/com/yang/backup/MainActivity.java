@@ -3,8 +3,6 @@ package com.yang.backup;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
@@ -20,14 +18,13 @@ import java.util.Calendar;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private final String TAG = MainActivity.class.getSimpleName();
-    final int UPDATE_DELAY_TIMES = 6000;
 
     MyHandler m_handler;
     ExpandableListView expandablelistview;
     MyCalendarHelp m_CalHelp;
     MyExpandableListAdapter adapter;
 
-    LinearLayout LinearLayout_finish, LinearLayout_add, LinearLayout_future;
+    LinearLayout LinearLayout_finish, LinearLayout_add, LinearLayout_future, LinearLayout_setting;
     TextView title, tips;
     ImageView add;
     DrawerLayout mDrawerLayout;
@@ -41,7 +38,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initData();
         initView();
 
-        m_handler.sendEmptyMessageDelayed(MyHandler.UPDATE_LIST, UPDATE_DELAY_TIMES);
         mDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -96,10 +92,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout_finish.setOnClickListener(this);
         LinearLayout_add.setOnClickListener(this);
         LinearLayout_future.setOnClickListener(this);
+        LinearLayout_setting.setOnClickListener(this);
     }
 
     void initData() {
-        m_handler = new MyHandler();
+        m_handler = new MyHandler(new MyHandler.HandlerCallback(){
+            @Override
+            public void handle() {
+                LogUtils.d(TAG, "handle");
+                onResume();
+                }});
         m_CalHelp = new MyCalendarHelp(this);
     }
 
@@ -113,11 +115,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout_finish = (LinearLayout) findViewById(R.id.LinearLayout_drawer_finish);
         LinearLayout_add = (LinearLayout) findViewById(R.id.LinearLayout_drawer_add);
         LinearLayout_future = (LinearLayout) findViewById(R.id.LinearLayout_drawer_future);
+        LinearLayout_setting = (LinearLayout) findViewById(R.id.LinearLayout_drawer_setting);
     }
 
     @Override
     public void onResume() {
         LogUtils.v(TAG, "onResume");
+        m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
         super.onResume();
         String result;
         DataBaseManager.RecordsTable table;
@@ -150,6 +154,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onPause(){
+        LogUtils.d(TAG, "onDestroy");
+        m_handler.removeCallbacksAndMessages(null);
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy(){
+        LogUtils.d(TAG, "onDestroy");
+        m_handler.removeCallbacksAndMessages(null);
+        super.onDestroy();
+    }
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ImageView_main_drawer:
@@ -170,27 +188,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 intent = new Intent();
                 intent.setClass(MainActivity.this, ActivityFuture.class);
                 startActivity(intent);
+                break;
+            case R.id.LinearLayout_drawer_setting:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, ActivitySetting.class);
+                startActivity(intent);
+                break;
             default:
                 break;
-        }
-    }
-
-    class MyHandler extends Handler {
-        private static final int UPDATE_LIST = 0;
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            try {
-                switch (msg.what) {
-                    case UPDATE_LIST:
-                        adapter.notifyDataSetChanged();
-                        sendEmptyMessageDelayed(UPDATE_LIST, UPDATE_DELAY_TIMES);
-                        break;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }
