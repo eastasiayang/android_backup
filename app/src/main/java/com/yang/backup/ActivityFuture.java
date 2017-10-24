@@ -35,6 +35,7 @@ public class ActivityFuture extends Activity {
     MyCalendarHelp m_CalHelp;
     MyExpandableListAdapter adapter;
     MyHandler m_handler;
+    String new_data, old_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +43,19 @@ public class ActivityFuture extends Activity {
         setContentView(R.layout.activity_future);
 
         m_CalHelp = new MyCalendarHelp(this);
-        m_handler = new MyHandler(new MyHandler.HandlerCallback(){
+        m_handler = new MyHandler(new MyHandler.HandlerCallback() {
             @Override
             public void handle() {
-                onResume();
-            }});
+                if (!new_data.equals(old_data) || (adapter.getGroupCount() == 0)) {
+                    old_data = new_data;
+                    onResume();
+                } else {
+                    adapter.notifyDataSetChanged();
+                    new_data = DataBaseManager.getInstance(ActivityFuture.this).getFutureRecordList(Calendar.getInstance());
+                    m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
+                }
+            }
+        });
 
         back = (ImageView) findViewById(R.id.imageview_future_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -77,9 +86,8 @@ public class ActivityFuture extends Activity {
     public void onResume() {
         LogUtils.v(TAG, "onResume");
         m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
-        String result;
-        result = DataBaseManager.getInstance(this).getFutureRecordList(Calendar.getInstance());
-        adapter = new MyExpandableListAdapter(this, result);
+        new_data = DataBaseManager.getInstance(this).getFutureRecordList(Calendar.getInstance());
+        adapter = new MyExpandableListAdapter(this, new_data);
         if (adapter.getGroupCount() == 0) {
             tips.setVisibility(View.VISIBLE);
             expandablelistview.setVisibility(View.GONE);
@@ -98,15 +106,16 @@ public class ActivityFuture extends Activity {
         }
         super.onResume();
     }
+
     @Override
-    public void onPause(){
+    public void onPause() {
         LogUtils.d(TAG, "onDestroy");
         m_handler.removeCallbacksAndMessages(null);
         super.onPause();
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         LogUtils.d(TAG, "onDestroy");
         m_handler.removeCallbacksAndMessages(null);
         super.onDestroy();

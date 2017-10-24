@@ -172,4 +172,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
             return temp2 + temp1;
         }
     }
+
+    void update(){
+
+    }
 }

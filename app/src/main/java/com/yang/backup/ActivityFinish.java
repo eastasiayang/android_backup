@@ -32,6 +32,7 @@ public class ActivityFinish extends Activity {
     MyExpandableListAdapter adapter;
     MyAlertDialog m_Alert_Dialog;
     MyHandler m_handler;
+    String new_data, old_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,14 @@ public class ActivityFinish extends Activity {
         m_handler = new MyHandler(new MyHandler.HandlerCallback(){
             @Override
             public void handle() {
-                onResume();
+                if (!new_data.equals(old_data) || (adapter.getGroupCount() == 0)) {
+                    old_data = new_data;
+                    onResume();
+                } else {
+                    adapter.notifyDataSetChanged();
+                    new_data = DataBaseManager.getInstance(ActivityFinish.this).getFutureRecordList(Calendar.getInstance());
+                    m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
+                }
             }});
         back = (ImageView) findViewById(R.id.ImageView_finish_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +100,8 @@ public class ActivityFinish extends Activity {
     public void onResume() {
         LogUtils.v(TAG, "onResume");
         m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
-        String result;
-        result = DataBaseManager.getInstance(this).getFinishedRecordList();
-        adapter = new MyExpandableListAdapter(this, result);
+        new_data = DataBaseManager.getInstance(this).getFinishedRecordList();
+        adapter = new MyExpandableListAdapter(this, new_data);
         if (adapter.getGroupCount() == 0) {
             delete.setImageResource(R.drawable.ic_delete_disable);
             delete.setEnabled(false);

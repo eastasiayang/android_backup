@@ -1,1 +1,1 @@
-include ':app', ':mydialog', ':basic'
+include ':app', ':mydialog', ':basic', 'login'

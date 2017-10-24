@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.yang.basic.LogUtils;
 import com.yang.basic.MyCalendarHelp;
+
 import java.util.Calendar;
+
+import com.yang.login.Activity_Login;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -25,11 +28,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     MyExpandableListAdapter adapter;
 
     LinearLayout LinearLayout_finish, LinearLayout_add, LinearLayout_future, LinearLayout_setting;
+    LinearLayout LinearLayout_login;
     TextView title, tips;
     ImageView add;
     DrawerLayout mDrawerLayout;
     ImageView drawer;
-
+    String new_data, old_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -93,15 +97,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout_add.setOnClickListener(this);
         LinearLayout_future.setOnClickListener(this);
         LinearLayout_setting.setOnClickListener(this);
+        LinearLayout_login.setOnClickListener(this);
     }
 
     void initData() {
-        m_handler = new MyHandler(new MyHandler.HandlerCallback(){
+        m_handler = new MyHandler(new MyHandler.HandlerCallback() {
             @Override
             public void handle() {
-                LogUtils.d(TAG, "handle");
-                onResume();
-                }});
+                if (!new_data.equals(old_data) || (adapter.getGroupCount() == 0)) {
+                    old_data = new_data;
+                    onResume();
+                } else {
+                    adapter.notifyDataSetChanged();
+                    new_data = DataBaseManager.getInstance(MainActivity.this).getFutureRecordList(Calendar.getInstance());
+                    m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
+                }
+            }
+        });
         m_CalHelp = new MyCalendarHelp(this);
     }
 
@@ -116,6 +128,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout_add = (LinearLayout) findViewById(R.id.LinearLayout_drawer_add);
         LinearLayout_future = (LinearLayout) findViewById(R.id.LinearLayout_drawer_future);
         LinearLayout_setting = (LinearLayout) findViewById(R.id.LinearLayout_drawer_setting);
+        LinearLayout_login = (LinearLayout) findViewById(R.id.LinearLayout_drawer_login);
     }
 
     @Override
@@ -123,24 +136,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LogUtils.v(TAG, "onResume");
         m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
         super.onResume();
-        String result;
         DataBaseManager.RecordsTable table;
-        result = DataBaseManager.getInstance(this).getStartedRecordList(Calendar.getInstance());
-        adapter = new MyExpandableListAdapter(this, result);
+        new_data = DataBaseManager.getInstance(this).getStartedRecordList(Calendar.getInstance());
+        adapter = new MyExpandableListAdapter(this, new_data);
         if (adapter.getGroupCount() == 0) {
             tips.setVisibility(View.VISIBLE);
             expandablelistview.setVisibility(View.GONE);
             table = DataBaseManager.getInstance(this).getFutureRecord(Calendar.getInstance());
             String temp;
-            if(table != null){
-            temp = getResources().getString(R.string.now_no_activity) + ", "
-                    + getResources().getString(R.string.next_activity) + "\n\n"
-                    + table.title + "\n\n" + getResources().getString(R.string.start_time)
-                    + m_CalHelp.getDurationTime(Calendar.getInstance(),
-                    m_CalHelp.StringToCalendar(table.start_time));
-            }else{
+            if (table != null) {
+                temp = getResources().getString(R.string.now_no_activity) + ", "
+                        + getResources().getString(R.string.next_activity) + "\n\n"
+                        + table.title + "\n\n" + getResources().getString(R.string.start_time)
+                        + m_CalHelp.getDurationTime(Calendar.getInstance(),
+                        m_CalHelp.StringToCalendar(table.start_time));
+            } else {
                 temp = getResources().getString(R.string.now_no_activity) + "\n\n"
-                + getResources().getString(R.string.press_button_to_add);
+                        + getResources().getString(R.string.press_button_to_add);
             }
             tips.setText(temp);
         } else {
@@ -155,14 +167,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         LogUtils.d(TAG, "onDestroy");
         m_handler.removeCallbacksAndMessages(null);
         super.onPause();
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         LogUtils.d(TAG, "onDestroy");
         m_handler.removeCallbacksAndMessages(null);
         super.onDestroy();
@@ -192,6 +204,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.LinearLayout_drawer_setting:
                 intent = new Intent();
                 intent.setClass(MainActivity.this, ActivitySetting.class);
+                startActivity(intent);
+                break;
+            case R.id.LinearLayout_drawer_login:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, Activity_Login.class);
                 startActivity(intent);
                 break;
             default:
