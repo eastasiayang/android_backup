@@ -53,7 +53,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:background="@color/listview_grey" />
+            android:background="@color/light_grey" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/listview_grey" />
+            android:background="@color/light_grey" />
 
         <LinearLayout
             android:id="@+id/linearlayout_date_time_lunar"
@@ -121,7 +121,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/listview_grey" />
+            android:background="@color/light_grey" />
 
         <LinearLayout
             android:id="@+id/linearlayout_date_time_all_day"
@@ -157,7 +157,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/listview_grey" />
+            android:background="@color/light_grey" />
 
         <LinearLayout
             android:layout_width="match_parent"

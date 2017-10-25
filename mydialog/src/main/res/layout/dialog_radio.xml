@@ -26,20 +26,20 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:background="@color/listview_grey" />
+            android:background="@color/light_grey" />
 
         <ListView
             android:id="@+id/listview_dialog_radio"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@color/listview_grey"
+            android:divider="@color/light_grey"
             android:dividerHeight="1dp"
             android:drawSelectorOnTop="false" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/listview_grey" />
+            android:background="@color/light_grey" />
 
         <Button
             android:id="@+id/btn_dlg_single_cancel"

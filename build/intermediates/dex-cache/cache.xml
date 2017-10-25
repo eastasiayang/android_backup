@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="24.0.0"
+        sha1="7b33610a1de78b3d034c873773da46539eaf653d">
+        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/4/android_backup-login-unspecified_520c58a3ba2aff53978f15b95a970b3b910a6494/classes.dex" />
+    </item>
+    <item
+        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/libs/SMSSDK-2.1.2.jar"
+        jumboMode="false"
+        revision="24.0.0"
+        sha1="705de2976e5cb1d4b0dd2ad4caa2dc84a521f9b0">
+        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/8/SMSSDK-2.1.2_3da13d2374ef7c27df27497aebc48b996c85b66a/classes.dex" />
+    </item>
+    <item
+        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/libs/MobCommons-2016.1012.1447.jar"
+        jumboMode="false"
+        revision="24.0.0"
+        sha1="a80406cee5cc87886fc26df07a6221425a8a57d8">
+        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/8/MobCommons-2016.1012.1447_c5048610ecbf70c91e74f837caba40182ee71935/classes.dex" />
+    </item>
+    <item
+        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/libs/MobTools-2016.1012.1447.jar"
+        jumboMode="false"
+        revision="24.0.0"
+        sha1="2404786e607e3e992c72615b0dca4eed9d9d19fc">
+        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/8/MobTools-2016.1012.1447_54c882ebbdaab4f889c6a003e66659167041ade4/classes.dex" />
+    </item>
+
+</items>

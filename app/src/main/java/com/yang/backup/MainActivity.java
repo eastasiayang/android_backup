@@ -16,8 +16,7 @@ import com.yang.basic.MyCalendarHelp;
 
 import java.util.Calendar;
 
-import com.yang.login.Activity_Login;
-
+import com.yang.login.ActivityLogin;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private final String TAG = MainActivity.class.getSimpleName();
@@ -208,7 +207,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.LinearLayout_drawer_login:
                 intent = new Intent();
-                intent.setClass(MainActivity.this, Activity_Login.class);
+                intent.setClass(MainActivity.this, ActivityLogin.class);
                 startActivity(intent);
                 break;
             default:

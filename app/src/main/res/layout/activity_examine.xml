@@ -33,7 +33,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/ui_deep_gray" />
+        android:background="@color/dark_grey" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -191,7 +191,7 @@
                 android:layout_marginEnd="5dp"
                 android:gravity="end"
                 android:text="@string/none"
-                android:textColor="@color/gray"
+                android:textColor="@color/grey"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -228,12 +228,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/ui_deep_gray" />
+        android:background="@color/dark_grey" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ui_light_gray"
+        android:background="@color/light_grey"
         android:gravity="center_horizontal"
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
