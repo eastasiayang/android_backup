@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.mob.MobSDK;
 import com.yang.basic.LogUtils;
 import com.yang.basic.MyCalendarHelp;
-
 import java.util.Calendar;
-
 import com.yang.login.ActivityLogin;
+
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private final String TAG = MainActivity.class.getSimpleName();
@@ -35,7 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     String new_data, old_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        MobSDK.init(this, "21e260d9e834e", "9f4001a9e705f67f657a6ce92d262a79");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initData();

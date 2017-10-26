@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SMSSDK-2.1.2">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/login/libs/SMSSDK-2.1.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

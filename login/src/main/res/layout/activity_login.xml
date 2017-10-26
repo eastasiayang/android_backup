@@ -47,7 +47,7 @@
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_perm_identity"
         android:gravity="start"
-        android:hint="@string/user_name"
+        android:hint="@string/phone_number"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:singleLine="true"

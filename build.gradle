@@ -2,16 +2,10 @@
 
 buildscript {
     repositories {
-        maven { url  "http://172.16.12.20:8081/nexus/content/repositories/central/"}
-        jcenter()
+        //maven { url  "http://172.16.12.20:8081/nexus/content/repositories/central/"}
+        //jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0'
-    }
-}
-
-allprojects {
-    repositories {
-        jcenter()
     }
 }

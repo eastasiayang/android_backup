@@ -36,18 +36,58 @@
         android:layout_height="2dp"
         android:background="@color/dark_grey" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/EditText_register_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/light_grey"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_perm_identity"
+            android:gravity="start"
+            android:hint="@string/phone_number"
+            android:inputType="number"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/Button_register_get_verification_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:background="@color/light_blue"
+            android:text="@string/get_verification_code"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
     <EditText
-        android:id="@+id/EditText_register_user"
+        android:id="@+id/EditText_register_verification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/light_grey"
         android:drawablePadding="10dp"
-        android:drawableStart="@drawable/ic_perm_identity"
+        android:drawableStart="@drawable/ic_key"
         android:gravity="start"
-        android:hint="@string/user_name"
+        android:hint="@string/verification"
+        android:inputType="number"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:singleLine="true"
@@ -80,7 +120,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/blue"
+        android:background="@color/light_blue"
         android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="20sp" />
