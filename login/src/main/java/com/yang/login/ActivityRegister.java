@@ -1,6 +1,7 @@
 package com.yang.login;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.yang.basic.RegexUtils;
 import com.yang.basic.ToastUtils;
 import com.yang.network.HttpRequest;
 import com.yang.network.HttpRequestListener;
+import com.yang.network.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,8 +60,18 @@ public class ActivityRegister extends Activity {
         register = (Button) findViewById(R.id.Button_register_register);
         get_verification.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                View view = getWindow().peekDecorView();
+                if (view != null) {
+                    InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 String phone = user.getText().toString();
                 if (!CheckInput(phone)) {
+                    return;
+                }
+                if (!NetworkUtil.isNetworkAvailable(ActivityRegister.this)){
+                    ToastUtils.showShort(ActivityRegister.this,
+                            R.string.tip_network_error_please_check);
                     return;
                 }
                 //SMSSDK.getVerificationCode("86", user.getText().toString());
@@ -88,6 +101,11 @@ public class ActivityRegister extends Activity {
                 if (!CheckInput(phone, pwd)) {
                     return;
                 }
+                if (!NetworkUtil.isNetworkAvailable(ActivityRegister.this)){
+                    ToastUtils.showShort(ActivityRegister.this,
+                            R.string.tip_network_error_please_check);
+                    return;
+                }
                 //SMSSDK.submitVerificationCode("86", phone,
                 //        verification.getText().toString());
                 net_handler = new Handler() {
@@ -101,7 +119,7 @@ public class ActivityRegister extends Activity {
                             if (result.contains("成")) {
                                 Toast.makeText(ActivityRegister.this, result, Toast.LENGTH_LONG).show();
                                 ToastUtils.showShort(ActivityRegister.this,
-                                        "注册成功......");
+                                        R.string.register_success);
                                 //final Intent it = new Intent(ActivityRegister.this, MainActivity.class); //你要转向的Activity
                                 //Timer timer = new Timer();
                                 //TimerTask task = new TimerTask() {
@@ -113,15 +131,14 @@ public class ActivityRegister extends Activity {
                                 //timer.schedule(task, 1000); //1秒后
                             } else {
                                 ToastUtils.showShort(ActivityRegister.this,
-                                        "注册 failed......");
+                                        R.string.register_fail);
                             }
                         }else if(msg.what == 2){
                             ToastUtils.showShort(ActivityRegister.this, (String) msg.obj);
                         }
                     }
                 };
-                String params = "&name=test" + "&cardid="
-                        + "&passwd=" + "asdf123412" + "&money=0" + "&number=" + "13760310761";//传递的数据
+                String params = "&name=test" + "&passwd=" + "asdf123412" + "&number=" + "13760310761";//传递的数据
                 // 启动线程来执行任务
                 HttpRequest.requestNetwork("http://cdz.ittun.cn/cdz/user_register.php",
                     params, new HttpRequestListener() {

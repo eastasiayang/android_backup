@@ -124,5 +124,4 @@
         android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="20sp" />
-
 </LinearLayout>

@@ -16,4 +16,7 @@
     <string name="tip_account_empty">请输入您的手机号或邮箱地址</string>
     <string name="tip_account_regex_not_right">手机号格式不正确</string>
     <string name="tip_password_can_not_be_empty">密码不能为空</string>
+    <string name="tip_network_error_please_check">网络故障！请检查网络后再试！</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_fail">注册失败</string>
 </resources>
