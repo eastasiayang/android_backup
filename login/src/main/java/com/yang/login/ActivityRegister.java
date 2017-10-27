@@ -1,9 +1,11 @@
 package com.yang.login;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +13,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yang.basic.LogUtils;
+import com.yang.basic.RegexUtils;
+import com.yang.basic.ToastUtils;
+import com.yang.network.HttpRequest;
+import com.yang.network.HttpRequestListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,12 +35,13 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 public class ActivityRegister extends Activity {
-    private final String TAG = ActivityLogin.class.getSimpleName();
+    private final String TAG = ActivityRegister.class.getSimpleName();
 
     EditText user, password, verification;
     Button get_verification, register;
-    EventHandler handler;
+    EventHandler sms_handler;
     private Handler mHandler = new Handler();
+    private Handler net_handler;
     private Timer timer = new Timer();
     private int recLen = 60;
 
@@ -43,8 +57,11 @@ public class ActivityRegister extends Activity {
         register = (Button) findViewById(R.id.Button_register_register);
         get_verification.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                LogUtils.d(TAG, user.getText().toString());
-                SMSSDK.getVerificationCode("86", user.getText().toString());
+                String phone = user.getText().toString();
+                if (!CheckInput(phone)) {
+                    return;
+                }
+                //SMSSDK.getVerificationCode("86", user.getText().toString());
                 TimerTask task = new TimerTask() {
                     @Override
                     public void run() {
@@ -66,12 +83,69 @@ public class ActivityRegister extends Activity {
 
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SMSSDK.submitVerificationCode("86", user.getText().toString(),
-                        verification.getText().toString());
+                String phone = user.getText().toString();
+                String pwd = password.getText().toString();
+                if (!CheckInput(phone, pwd)) {
+                    return;
+                }
+                //SMSSDK.submitVerificationCode("86", phone,
+                //        verification.getText().toString());
+                net_handler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        if (msg.what == 1) {
+                            //提示读取结果
+                            String result = (String) msg.obj;
+                            LogUtils.d(TAG, "result = " + result);
+                            Toast.makeText(ActivityRegister.this, result, Toast.LENGTH_LONG).show();
+                            if (result.contains("成")) {
+                                Toast.makeText(ActivityRegister.this, result, Toast.LENGTH_LONG).show();
+                                ToastUtils.showShort(ActivityRegister.this,
+                                        "注册成功......");
+                                //final Intent it = new Intent(ActivityRegister.this, MainActivity.class); //你要转向的Activity
+                                //Timer timer = new Timer();
+                                //TimerTask task = new TimerTask() {
+                                //    @Override
+                                //    public void run() {
+                                //        startActivity(it); //执行
+                                //    }
+                                //};
+                                //timer.schedule(task, 1000); //1秒后
+                            } else {
+                                ToastUtils.showShort(ActivityRegister.this,
+                                        "注册 failed......");
+                            }
+                        }else if(msg.what == 2){
+                            ToastUtils.showShort(ActivityRegister.this, (String) msg.obj);
+                        }
+                    }
+                };
+                String params = "&name=test" + "&cardid="
+                        + "&passwd=" + "asdf123412" + "&money=0" + "&number=" + "13760310761";//传递的数据
+                // 启动线程来执行任务
+                HttpRequest.requestNetwork("http://cdz.ittun.cn/cdz/user_register.php",
+                    params, new HttpRequestListener() {
+                        @Override
+                        public void onResponse(String result) {
+                            Message m = new Message();
+                            m.what = 1;
+                            m.obj = result;
+                            net_handler.sendMessage(m);
+                        }
+
+                        @Override
+                        public void onErrorResponse(String error) {
+                            LogUtils.d(TAG, error);
+                            Message m = new Message();
+                            m.what = 2;
+                            m.obj = error;
+                            net_handler.sendMessage(m);
+                        }
+                    });
             }
         });
 
-        handler = new EventHandler() {
+        sms_handler = new EventHandler() {
             @Override
             public void afterEvent(int event, int result, Object data) {
                 if (result == SMSSDK.RESULT_COMPLETE) {
@@ -118,12 +192,11 @@ public class ActivityRegister extends Activity {
                 }
             }
         };
-
-        SMSSDK.registerEventHandler(handler);
+        SMSSDK.registerEventHandler(sms_handler);
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterAllEventHandler();
     }
@@ -132,16 +205,45 @@ public class ActivityRegister extends Activity {
         get_verification.setText(String.format(
                 getResources().getString(R.string.count_down), recLen--));
         get_verification.setClickable(false);
-        get_verification.setTextColor(Color.parseColor("#f3f4f8"));
-        get_verification.setBackgroundColor(Color.parseColor("#b1b1b3"));
+        get_verification.setTextColor(ContextCompat.getColor(this, R.color.white));
+        get_verification.setBackgroundColor(ContextCompat.getColor(this, R.color.light_grey));
     }
 
     private void setButtonStatusOn() {
         timer.cancel();
         get_verification.setText("重新发送");
-        get_verification.setTextColor(getResources().getColor(R.color.white));
-        get_verification.setBackgroundColor(Color.parseColor("#f3f4f8"));
+        get_verification.setTextColor(ContextCompat.getColor(this, R.color.white));
+        get_verification.setBackgroundColor(ContextCompat.getColor(this, R.color.light_blue));
         recLen = 60;
         get_verification.setClickable(true);
+    }
+
+    boolean CheckInput(String phone) {
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showShort(ActivityRegister.this, R.string.tip_please_input_phone);
+            return false;
+        } else if (phone.length() < 11) {
+            ToastUtils.showShort(ActivityRegister.this, R.string.tip_phone_regex_not_right);
+            return false;
+        } else if (!RegexUtils.checkMobile(phone)) {
+            ToastUtils.showShort(ActivityRegister.this, R.string.tip_phone_regex_not_right);
+            return false;
+        }
+        return true;
+    }
+
+    boolean CheckInput(String phone, String password) {
+        return true;
+        //if (!CheckInput(phone)) {
+        //return false;
+        //}
+        //if (TextUtils.isEmpty(password)) {
+        //ToastUtils.showShort(this, R.string.tip_password_can_not_be_empty);
+        //return false;
+        //} else if (password.length() < 6 || password.length() > 32) {
+        //    ToastUtils.showShort(this, R.string.tip_please_input_6_32_password);
+        //    return false;
+        //}
+        //return true;
     }
 }

@@ -4,6 +4,7 @@
       <root url="jar://$PROJECT_DIR$/mydialog/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/annotations.zip!/" />
       <root url="jar://$PROJECT_DIR$/mydialog/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/annotations.zip!/" />
       <root url="jar://$PROJECT_DIR$/mydialog/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/mydialog/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/mydialog/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/res" />
@@ -12,6 +13,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../software/android_studio2_1/Sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../../software/android_studio2_1/Sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../../software/android_studio2_1/Sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../../software/android_studio2_1/Sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/" />

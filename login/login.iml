@@ -107,6 +107,7 @@
     <orderEntry type="library" exported="" name="MobCommons-2017.0607.1736" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
+    <orderEntry type="module" module-name="network" exported="" />
     <orderEntry type="module" module-name="basic" exported="" />
   </component>
 </module>
