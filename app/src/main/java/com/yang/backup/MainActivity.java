@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     MyExpandableListAdapter adapter;
 
     LinearLayout LinearLayout_finish, LinearLayout_add, LinearLayout_future, LinearLayout_setting;
-    LinearLayout LinearLayout_login;
+    LinearLayout LinearLayout_login, LinearLayout_about;
     TextView title, tips;
     ImageView add;
     DrawerLayout mDrawerLayout;
@@ -97,6 +97,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout_future.setOnClickListener(this);
         LinearLayout_setting.setOnClickListener(this);
         LinearLayout_login.setOnClickListener(this);
+        LinearLayout_about.setOnClickListener(this);
     }
 
     void initData() {
@@ -128,6 +129,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout_future = (LinearLayout) findViewById(R.id.LinearLayout_drawer_future);
         LinearLayout_setting = (LinearLayout) findViewById(R.id.LinearLayout_drawer_setting);
         LinearLayout_login = (LinearLayout) findViewById(R.id.LinearLayout_drawer_login);
+        LinearLayout_about = (LinearLayout) findViewById(R.id.LinearLayout_drawer_about);
     }
 
     @Override
@@ -208,6 +210,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.LinearLayout_drawer_login:
                 intent = new Intent();
                 intent.setClass(MainActivity.this, ActivityLogin.class);
+                startActivity(intent);
+                break;
+            case R.id.LinearLayout_drawer_about:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, ActivityAbout.class);
                 startActivity(intent);
                 break;
             default:

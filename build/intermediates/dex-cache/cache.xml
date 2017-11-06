@@ -1,26 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="24.0.0"
-        sha1="ec80d02cc433cb0b931d392e45765d69e629fbd1">
-        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/4/android_backup-login-unspecified_520c58a3ba2aff53978f15b95a970b3b910a6494/classes.dex" />
-    </item>
-    <item
-        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/libs/MobTools-2017.0607.1736.jar"
-        jumboMode="false"
-        revision="24.0.0"
-        sha1="2429364c474763b628b6711905d7549d3e2b58a4">
-        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/8/MobTools-2017.0607.1736_b2ed382fc137f2aa29e1b25b423b4d0b6cc97bd0/classes.dex" />
-    </item>
-    <item
-        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/login/unspecified/jars/libs/MobCommons-2017.0607.1736.jar"
-        jumboMode="false"
-        revision="24.0.0"
-        sha1="e6c87e382e739ccde56ef5f6e389696628c8cb7f">
-        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/8/MobCommons-2017.0607.1736_f6de7fdd270f24ce38a7de5a89424e6cc7603b50/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

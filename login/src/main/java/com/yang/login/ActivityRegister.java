@@ -69,7 +69,7 @@ public class ActivityRegister extends Activity {
                 if (!CheckInput(phone)) {
                     return;
                 }
-                if (!NetworkUtil.isNetworkAvailable(ActivityRegister.this)){
+                if (!NetworkUtil.isNetworkAvailable(ActivityRegister.this)) {
                     ToastUtils.showShort(ActivityRegister.this,
                             R.string.tip_network_error_please_check);
                     return;
@@ -96,12 +96,17 @@ public class ActivityRegister extends Activity {
 
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                View view = getWindow().peekDecorView();
+                if (view != null) {
+                    InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 String phone = user.getText().toString();
                 String pwd = password.getText().toString();
                 if (!CheckInput(phone, pwd)) {
                     return;
                 }
-                if (!NetworkUtil.isNetworkAvailable(ActivityRegister.this)){
+                if (!NetworkUtil.isNetworkAvailable(ActivityRegister.this)) {
                     ToastUtils.showShort(ActivityRegister.this,
                             R.string.tip_network_error_please_check);
                     return;
@@ -115,11 +120,8 @@ public class ActivityRegister extends Activity {
                             //提示读取结果
                             String result = (String) msg.obj;
                             LogUtils.d(TAG, "result = " + result);
-                            Toast.makeText(ActivityRegister.this, result, Toast.LENGTH_LONG).show();
                             if (result.contains("成")) {
-                                Toast.makeText(ActivityRegister.this, result, Toast.LENGTH_LONG).show();
-                                ToastUtils.showShort(ActivityRegister.this,
-                                        R.string.register_success);
+                                ToastUtils.showShort(ActivityRegister.this, R.string.register_success);
                                 //final Intent it = new Intent(ActivityRegister.this, MainActivity.class); //你要转向的Activity
                                 //Timer timer = new Timer();
                                 //TimerTask task = new TimerTask() {
@@ -130,35 +132,36 @@ public class ActivityRegister extends Activity {
                                 //};
                                 //timer.schedule(task, 1000); //1秒后
                             } else {
-                                ToastUtils.showShort(ActivityRegister.this,
-                                        R.string.register_fail);
+                                ToastUtils.showShort(ActivityRegister.this,R.string.register_fail);
                             }
-                        }else if(msg.what == 2){
-                            ToastUtils.showShort(ActivityRegister.this, (String) msg.obj);
+                        } else if (msg.what == 2) {
+                            if (((String) msg.obj).contains("timed out")) {
+                                ToastUtils.showShort(ActivityRegister.this, R.string.register_fail_timeout);
+                            }
                         }
                     }
                 };
                 String params = "&name=test" + "&passwd=" + "asdf123412" + "&number=" + "13760310761";//传递的数据
                 // 启动线程来执行任务
                 HttpRequest.requestNetwork("http://cdz.ittun.cn/cdz/user_register.php",
-                    params, new HttpRequestListener() {
-                        @Override
-                        public void onResponse(String result) {
-                            Message m = new Message();
-                            m.what = 1;
-                            m.obj = result;
-                            net_handler.sendMessage(m);
-                        }
+                        params, new HttpRequestListener() {
+                            @Override
+                            public void onResponse(String result) {
+                                Message m = new Message();
+                                m.what = 1;
+                                m.obj = result;
+                                net_handler.sendMessage(m);
+                            }
 
-                        @Override
-                        public void onErrorResponse(String error) {
-                            LogUtils.d(TAG, error);
-                            Message m = new Message();
-                            m.what = 2;
-                            m.obj = error;
-                            net_handler.sendMessage(m);
-                        }
-                    });
+                            @Override
+                            public void onErrorResponse(String error) {
+                                LogUtils.d(TAG, error);
+                                Message m = new Message();
+                                m.what = 2;
+                                m.obj = error;
+                                net_handler.sendMessage(m);
+                            }
+                        });
             }
         });
 

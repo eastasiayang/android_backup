@@ -46,9 +46,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_add_modify);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar_add);
 
         id = getIntent().getIntExtra("id", -1);
         LogUtils.v(TAG, "id = " + id);
@@ -56,9 +54,9 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
         m_CalHelp = new MyCalendarHelp(this);
         Calendar cal = Calendar.getInstance();
 
-        OK = (ImageView) findViewById(R.id.title_ok);
-        title_name = (TextView) findViewById(R.id.title_name);
-        cancel = (ImageView) findViewById(R.id.title_cancel);
+        OK = (ImageView) findViewById(R.id.ImageView_modify_OK);
+        title_name = (TextView) findViewById(R.id.TextView_modify_name);
+        cancel = (ImageView) findViewById(R.id.ImageView_modify_cancel);
 
         title = (EditText) findViewById(R.id.edittext_add_title);
         location = (EditText) findViewById(R.id.edittext_add_location);
@@ -142,7 +140,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
                 m_DateTime_Dialog.show();
                 break;
 
-            case R.id.title_ok:
+            case R.id.ImageView_modify_OK:
                 String sTitle = title.getText().toString();
                 if(sTitle.equals("")){
                     sTitle = getResources().getString(R.string.no_title);
@@ -177,7 +175,7 @@ public class ActivityAddOrModify extends Activity implements View.OnClickListene
                 }
                 finish();
                 break;
-            case R.id.title_cancel:
+            case R.id.ImageView_modify_cancel:
                 Toast.makeText(this, "cancel", Toast.LENGTH_LONG).show();
                 finish();
                 break;
