@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/basic/unspecified/jars/libs/junit-4.12.jar"
+        jumboMode="false"
+        revision="24.0.0"
+        sha1="4a24104395767a4003dc22d43da7f56fe80b6d38">
+        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/8/junit-4.12_78c14f6417186952710a9d4da7e1c4aebfbdfb0f/classes.dex" />
+    </item>
+    <item
+        jar="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/exploded-aar/android_backup/basic/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="24.0.0"
+        sha1="150b3ad9dbc528432a9481b0e19f932ee40ebdd3">
+        <dex dex="/home/user/sdb/apks/Backup/android_backup/app/build/intermediates/transforms/dex/debug/folders/1000/4/android_backup-basic-unspecified_2fc67c9c773b388b10f1df007ef26f9c24b7ebe7/classes.dex" />
+    </item>
+
+</items>

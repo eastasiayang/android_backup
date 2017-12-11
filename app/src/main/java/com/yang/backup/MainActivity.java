@@ -2,6 +2,7 @@ package com.yang.backup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,8 @@ import com.mob.MobSDK;
 import com.yang.basic.LogUtils;
 import com.yang.basic.MyCalendarHelp;
 import java.util.Calendar;
+
+import com.yang.basic.ToastUtils;
 import com.yang.login.ActivityLogin;
 
 
@@ -27,7 +30,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     MyExpandableListAdapter adapter;
 
     LinearLayout LinearLayout_finish, LinearLayout_add, LinearLayout_future, LinearLayout_setting;
-    LinearLayout LinearLayout_login, LinearLayout_about;
+    LinearLayout LinearLayout_login, LinearLayout_about, LinearLayout_synchronize;
+    LinearLayout LinearLayout_share, LinearLayout_money;
     TextView title, tips;
     ImageView add;
     DrawerLayout mDrawerLayout;
@@ -76,7 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
 
         title.setText(m_CalHelp.CalendarToString(
-                Calendar.getInstance(), m_CalHelp.DATE_FORMAT_DISPLAY).substring(0, 8));
+                Calendar.getInstance(), m_CalHelp.DATE_FORMAT_DISPLAY).substring(0, 11));
+
         expandablelistview.setGroupIndicator(null);
         expandablelistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             public boolean onChildClick(ExpandableListView parent, View v,
@@ -92,12 +97,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         drawer.setOnClickListener(this);
         add.setOnClickListener(this);
-        LinearLayout_finish.setOnClickListener(this);
-        LinearLayout_add.setOnClickListener(this);
-        LinearLayout_future.setOnClickListener(this);
-        LinearLayout_setting.setOnClickListener(this);
+
         LinearLayout_login.setOnClickListener(this);
+        LinearLayout_add.setOnClickListener(this);
+        LinearLayout_finish.setOnClickListener(this);
+        LinearLayout_future.setOnClickListener(this);
+        LinearLayout_synchronize.setOnClickListener(this);
+        LinearLayout_setting.setOnClickListener(this);
         LinearLayout_about.setOnClickListener(this);
+        LinearLayout_share.setOnClickListener(this);
+        LinearLayout_money.setOnClickListener(this);
     }
 
     void initData() {
@@ -109,7 +118,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     onResume();
                 } else {
                     adapter.notifyDataSetChanged();
-                    new_data = DataBaseManager.getInstance(MainActivity.this).getFutureRecordList(Calendar.getInstance());
+                    new_data = DataBaseManager.getInstance(MainActivity.this).getStartedRecordList(Calendar.getInstance());
                     m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
                 }
             }
@@ -124,12 +133,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         add = (ImageView) findViewById(R.id.ImageView_main_add);
         tips = (TextView) findViewById(R.id.TextView_main_tips);
         expandablelistview = (ExpandableListView) findViewById(R.id.ExpandableListView_main_record);
-        LinearLayout_finish = (LinearLayout) findViewById(R.id.LinearLayout_drawer_finish);
+        LinearLayout_login = (LinearLayout) findViewById(R.id.LinearLayout_drawer_login);
         LinearLayout_add = (LinearLayout) findViewById(R.id.LinearLayout_drawer_add);
+        LinearLayout_finish = (LinearLayout) findViewById(R.id.LinearLayout_drawer_finish);
         LinearLayout_future = (LinearLayout) findViewById(R.id.LinearLayout_drawer_future);
         LinearLayout_setting = (LinearLayout) findViewById(R.id.LinearLayout_drawer_setting);
-        LinearLayout_login = (LinearLayout) findViewById(R.id.LinearLayout_drawer_login);
         LinearLayout_about = (LinearLayout) findViewById(R.id.LinearLayout_drawer_about);
+        LinearLayout_synchronize = (LinearLayout) findViewById(R.id.LinearLayout_drawer_synchronize);
+        LinearLayout_share = (LinearLayout) findViewById(R.id.LinearLayout_drawer_share);
+        LinearLayout_money = (LinearLayout) findViewById(R.id.LinearLayout_drawer_money);
     }
 
     @Override
@@ -216,6 +228,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 intent = new Intent();
                 intent.setClass(MainActivity.this, ActivityAbout.class);
                 startActivity(intent);
+                break;
+            case R.id.LinearLayout_drawer_synchronize:
+                ToastUtils.showShort(MainActivity.this, R.string.developing);
+                break;
+            case R.id.LinearLayout_drawer_share:
+                ToastUtils.showShort(MainActivity.this, R.string.developing);
+                break;
+            case R.id.LinearLayout_drawer_money:
+                ToastUtils.showShort(MainActivity.this, R.string.developing);
                 break;
             default:
                 break;

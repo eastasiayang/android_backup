@@ -48,7 +48,7 @@ public class ActivityFinish extends Activity {
                     onResume();
                 } else {
                     adapter.notifyDataSetChanged();
-                    new_data = DataBaseManager.getInstance(ActivityFinish.this).getFutureRecordList(Calendar.getInstance());
+                    new_data = DataBaseManager.getInstance(ActivityFinish.this).getFinishedRecordList();
                     m_handler.sendEmptyMessageDelayed(m_handler.UPDATE_MENU, m_handler.UPDATE_DELAY_TIMES);
                 }
             }});

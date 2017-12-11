@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yang.basic.ToastUtils;
 import com.yang.network.HttpRequest;
 
 public class ActivityLogin extends Activity{
@@ -38,6 +39,7 @@ public class ActivityLogin extends Activity{
                     return;
                 }
                 sPassword = Info.MD5(sPassword);
+                ToastUtils.showShort(ActivityLogin.this, R.string.developing);
                 //HttpRequest.login(sUser, sPassword);
 
             }

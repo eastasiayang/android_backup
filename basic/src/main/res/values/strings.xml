@@ -10,4 +10,5 @@
     <string name="hour">小时</string>
     <string name="minute">分</string>
     <string name="second">秒</string>
+    <string name="developing">开发中......</string>
 </resources>
